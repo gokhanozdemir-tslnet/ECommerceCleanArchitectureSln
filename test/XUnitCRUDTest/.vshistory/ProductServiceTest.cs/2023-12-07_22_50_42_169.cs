@@ -49,10 +49,15 @@ namespace XUnitCRUDTest
 
             //Act:
             _testOutputHelper.WriteLine("this is test");
-            var response = _productService.GetProduct(request);
+            //_testOutputHelper.WriteLine(request.ToString());
 
             //Assert:
-            Assert.True(response.Id > 0);
+            Assert.Throws<ArgumentNullException>(
+                () => {
+                    //Act:
+                    _productService.GetProduct(request);
+                }
+                );
 
         }
 

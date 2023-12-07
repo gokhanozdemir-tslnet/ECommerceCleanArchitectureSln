@@ -7,7 +7,6 @@ namespace ECommerce.Core.ServiceContracts
     public interface IProductService
     {
         GetProductResponse GetProduct(GetProductRequest request);
-        AddProductResponse AddProduct(AddProductRequest request);
 
     }
 }
