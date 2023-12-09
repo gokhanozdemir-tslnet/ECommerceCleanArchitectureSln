@@ -18,7 +18,7 @@ namespace XUnitCRUDTest
         public ProductServiceTest(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductGetterService();
+            _productService = new ProductService();
             _fixture = new Fixture();
         }
 
@@ -48,8 +48,7 @@ namespace XUnitCRUDTest
         {
 
             //Arrange:
-            GetProductRequest request = _fixture.Create<GetProductRequest>();
-
+            GetProductRequest request = new GetProductRequest { Id=1 };
 
             //Act:
             _testOutputHelper.WriteLine("this is test");

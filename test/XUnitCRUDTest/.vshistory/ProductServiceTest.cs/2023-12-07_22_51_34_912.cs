@@ -1,5 +1,4 @@
-﻿using AutoFixture;
-using ECommerce.Core.DTOs.Request;
+﻿using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.ServiceContracts;
 using ECommerce.Core.Services;
 using Xunit.Abstractions;
@@ -11,15 +10,13 @@ namespace XUnitCRUDTest
     {
         IProductService _productService;
         ITestOutputHelper _testOutputHelper;
-        Fixture _fixture;
 
       
 
         public ProductServiceTest(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductGetterService();
-            _fixture = new Fixture();
+            _productService = new ProductService();
         }
 
         [Fact]
@@ -48,8 +45,7 @@ namespace XUnitCRUDTest
         {
 
             //Arrange:
-            GetProductRequest request = _fixture.Create<GetProductRequest>();
-
+            GetProductRequest request = new GetProductRequest { Id=1 };
 
             //Act:
             _testOutputHelper.WriteLine("this is test");

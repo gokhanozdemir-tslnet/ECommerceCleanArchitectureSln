@@ -2,12 +2,10 @@
 using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.DTOs.Response;
 
-namespace ECommerce.Core.ServiceContracts
+namespace ECommerce.Core.ServiceContracts.ProductContracts
 {
-    public interface IProductService
+    internal interface IProductAdderService
     {
-        GetProductResponse GetProduct(GetProductRequest request);
         AddProductResponse AddProduct(AddProductRequest request);
-
     }
 }
