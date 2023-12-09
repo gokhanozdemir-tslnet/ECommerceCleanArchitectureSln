@@ -22,7 +22,9 @@ namespace XUnitCRUDTest.Products
         public ProductGetterServiceTest(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductGetterService(new ProductRepository());
+            _productService = new ProductGetterService(
+                new ProductRepository()
+                );
             _fixture = new Fixture();
             _validator = new ProductGetterValidator();
         }
