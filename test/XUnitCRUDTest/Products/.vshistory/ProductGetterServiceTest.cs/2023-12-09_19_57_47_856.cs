@@ -8,7 +8,6 @@ using ECommerce.Core.Services.ProductServices;
 using Xunit.Abstractions;
 using System.Text.Json;
 using ECommerce.Core.Helpers.Extensions;
-using ECommerce.Infastructure.Repositories;
 
 namespace XUnitCRUDTest.Products
 {
@@ -22,9 +21,7 @@ namespace XUnitCRUDTest.Products
         public ProductGetterServiceTest(ITestOutputHelper testOutputHelper)
         {
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductGetterService(
-                new ProductRepository()
-                );
+            _productService = new ProductGetterService();
             _fixture = new Fixture();
             _validator = new ProductGetterValidator();
         }

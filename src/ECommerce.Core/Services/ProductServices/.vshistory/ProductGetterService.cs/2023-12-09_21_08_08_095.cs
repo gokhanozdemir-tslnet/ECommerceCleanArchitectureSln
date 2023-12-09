@@ -27,8 +27,9 @@ namespace ECommerce.Core.Services.ProductServices
      
             _validator.ValidateAndThrow(request);
             var product = _productsRepository.GetProductById(request.Id);
-            return product.ToGetProductResponse();
-  
+            GetProductResponse x = product.ToGetProductResponse();
+          
+            return response;
         }
     }
 

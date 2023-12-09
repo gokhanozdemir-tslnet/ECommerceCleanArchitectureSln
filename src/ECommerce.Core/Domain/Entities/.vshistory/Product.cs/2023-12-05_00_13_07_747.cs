@@ -1,5 +1,4 @@
-﻿
-namespace ECommerce.Core.Domain.Entities
+﻿namespace ECommerce.Core.Domain.Entities
 {
     public class Product
     {
@@ -13,6 +12,5 @@ namespace ECommerce.Core.Domain.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-       
     }
 }

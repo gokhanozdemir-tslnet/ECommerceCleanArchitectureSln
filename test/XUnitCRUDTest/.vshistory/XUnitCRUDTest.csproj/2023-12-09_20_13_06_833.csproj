@@ -25,7 +25,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\ECommerce.Core\ECommerce.Core.csproj" />
-    <ProjectReference Include="..\..\src\ECommerce.Infastructure\ECommerce.Infastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,6 @@ using ECommerce.Core.Domain.Entities;
 using ECommerce.Core.Domain.RepositoryContracts;
 using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.DTOs.Response;
-using ECommerce.Core.Helpers.Extensions;
 using ECommerce.Core.Helpers.Mapper;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.ProductContracts;
@@ -26,11 +25,16 @@ namespace ECommerce.Core.Services.ProductServices
         {
      
             _validator.ValidateAndThrow(request);
-            var product = _productsRepository.GetProductById(request.Id);
-            return product.ToGetProductResponse();
-  
+
+
+            //if (request == null)
+            //    throw new ArgumentNullException(nameof(request));
+
+
+            Product product = new Product { Id = 1, Title = "Phone", Price = 10M };
+            //Reposiorty get product
+            GetProductResponse response = AppMapperBase.Mapper.Map<GetProductResponse>(product);
+            return response;
         }
     }
-
-
 }

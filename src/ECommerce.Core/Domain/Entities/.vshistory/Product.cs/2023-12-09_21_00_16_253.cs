@@ -13,6 +13,9 @@ namespace ECommerce.Core.Domain.Entities
         public int CategoryId { get; set; }
         public Category Category { get; set; }
 
-       
+        internal T ToResponse<T>()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
