@@ -5,7 +5,6 @@ using ECommerce.Core.DTOs.Response;
 using ECommerce.Core.Helpers.Mapper;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.ProductContracts;
-using FluentValidation;
 
 namespace ECommerce.Core.Services.ProductServices
 {
@@ -21,11 +20,10 @@ namespace ECommerce.Core.Services.ProductServices
         public GetProductResponse GetProduct(GetProductRequest request)
         {
      
-            _validator.ValidateAndThrow(request);
+            _validator(request)
 
-
-            //if (request == null)
-            //    throw new ArgumentNullException(nameof(request));
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
 
 
             Product product = new Product { Id = 1, Title = "Phone", Price = 10M };

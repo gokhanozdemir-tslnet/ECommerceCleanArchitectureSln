@@ -22,7 +22,7 @@ namespace ECommerce.Core.Services.ProductServices
         {
      
             _validator.ValidateAndThrow(request);
-
+            _validator.v
 
             //if (request == null)
             //    throw new ArgumentNullException(nameof(request));

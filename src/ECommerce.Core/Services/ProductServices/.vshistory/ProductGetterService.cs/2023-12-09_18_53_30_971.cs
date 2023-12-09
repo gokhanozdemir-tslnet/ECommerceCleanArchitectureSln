@@ -23,9 +23,8 @@ namespace ECommerce.Core.Services.ProductServices
      
             _validator.ValidateAndThrow(request);
 
-
-            //if (request == null)
-            //    throw new ArgumentNullException(nameof(request));
+            if (request == null)
+                throw new ArgumentNullException(nameof(request));
 
 
             Product product = new Product { Id = 1, Title = "Phone", Price = 10M };
