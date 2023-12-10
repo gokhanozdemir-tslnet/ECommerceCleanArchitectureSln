@@ -6,9 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
-var name = typeof(AppDbContext).Assembly.GetName().Name;
-
 builder.Services.AddDbContext<AppDbContext>(
     options =>
     {

@@ -13,7 +13,10 @@ builder.Services.AddDbContext<AppDbContext>(
     options =>
     {
         options.UseSqlServer(
-            builder.Configuration.GetConnectionString("ECommerceDb")
+            builder.Configuration.GetConnectionString("ECommerceDb"),
+            x=>x.MigrationsAssembly(
+                typeof(AppDbContext).Assembly.GetName().Name
+                )
             );
     }
     );

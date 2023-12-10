@@ -6,14 +6,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-
-var name = typeof(AppDbContext).Assembly.GetName().Name;
-
 builder.Services.AddDbContext<AppDbContext>(
     options =>
     {
         options.UseSqlServer(
-            builder.Configuration.GetConnectionString("ECommerceDb")
+            builder.Configuration.GetConnectionString("ECommerceDb"),
+            x=>x.MigrationsAssembly(
+                typeof(AppDbContext).Assembly.GetName().Name
+                )
             );
     }
     );

@@ -15,9 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.UI", "src\ECommer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ECommerce.WebAPI", "src\ECommerce.WebAPI\ECommerce.WebAPI.csproj", "{BCB89636-1417-4A99-AAF5-C8B19A58DE90}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitCRUDTest", "test\XUnitCRUDTest\XUnitCRUDTest.csproj", "{B1FD55E1-5FDD-4187-81C5-97E4D9B8D269}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{B477DA40-7E4A-4361-A117-D731FC4E19A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitCRUDTest", "test\XUnitCRUDTest\XUnitCRUDTest.csproj", "{B1FD55E1-5FDD-4187-81C5-97E4D9B8D269}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
