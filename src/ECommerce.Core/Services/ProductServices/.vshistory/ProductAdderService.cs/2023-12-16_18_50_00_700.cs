@@ -3,7 +3,6 @@ using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.DTOs.Response;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.ProductContracts;
-using FluentValidation;
 
 namespace ECommerce.Core.Services.ProductServices
 {
@@ -20,7 +19,7 @@ namespace ECommerce.Core.Services.ProductServices
 
         public Task<AddProductResponse> AddProduct(AddProductRequest request)
         {
-            _validator.ValidateAndThrow(request);
+            _validator.Validate(request);
             throw new NotImplementedException();
         }
     }

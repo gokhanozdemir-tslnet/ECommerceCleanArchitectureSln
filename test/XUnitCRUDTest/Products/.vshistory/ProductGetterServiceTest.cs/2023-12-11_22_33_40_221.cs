@@ -1,4 +1,6 @@
-﻿using AutoFixture;
+﻿
+
+using AutoFixture;
 using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.ProductContracts;
@@ -6,7 +8,6 @@ using ECommerce.Core.Services.ProductServices;
 using Xunit.Abstractions;
 using ECommerce.Core.Helpers.Extensions;
 using ECommerce.Infastructure.Repositories;
-
 
 namespace XUnitCRUDTest.Products
 {
@@ -16,7 +17,6 @@ namespace XUnitCRUDTest.Products
         ITestOutputHelper _testOutputHelper;
         Fixture _fixture;
         ProductGetterValidator _validator;
-        
 
         public ProductGetterServiceTest(ITestOutputHelper testOutputHelper)
         {
