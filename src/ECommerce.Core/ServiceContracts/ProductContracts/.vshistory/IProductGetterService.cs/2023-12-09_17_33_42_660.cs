@@ -1,5 +1,4 @@
-﻿using ECommerce.Core.Domain.Entities;
-using ECommerce.Core.DTOs.Request;
+﻿using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.DTOs.Response;
 
 namespace ECommerce.Core.ServiceContracts.ProductContracts
@@ -8,6 +7,5 @@ namespace ECommerce.Core.ServiceContracts.ProductContracts
     {
 
         GetProductResponse GetProduct(GetProductRequest request);
-         Task<List<Product>> GetAllProducts();
     }
 }

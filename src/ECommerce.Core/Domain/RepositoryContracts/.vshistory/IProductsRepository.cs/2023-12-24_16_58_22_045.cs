@@ -8,8 +8,8 @@ namespace ECommerce.Core.Domain.RepositoryContracts
     {
         Product GetProductById(int productId);
         Product GetProductByName(string productName);
-        Task<List<Product>> GetAllProductsAsync();
-        Task<Product> AddProductAsync(Product product);
+        List<Product> GetAllProductsAsync();
+        Product AddProduct(Product product);
 
     }
 }

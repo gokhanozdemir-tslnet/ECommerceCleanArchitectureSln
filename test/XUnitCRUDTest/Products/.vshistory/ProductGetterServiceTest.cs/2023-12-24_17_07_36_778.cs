@@ -93,12 +93,12 @@ namespace XUnitCRUDTest.Products
         }
 
         [Fact]
-        private async void GetAllProducts()
+        private async void GetAllProduct()
         {
-           var list = await _productService.GetAllProducts();
+           var list = _productService.GetAllProducts();
             _testOutputHelper.WriteLine(list.ToJson());
 
-            list.Should().HaveCountGreaterThan(0);
+            list.Should().NotBeEmpty();
             
         }
     }

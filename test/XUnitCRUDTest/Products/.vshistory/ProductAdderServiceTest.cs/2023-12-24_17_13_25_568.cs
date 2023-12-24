@@ -8,37 +8,24 @@ using ECommerce.Infastructure.Repositories;
 using Xunit.Abstractions;
 using FluentAssertions;
 using ECommerce.Core.Helpers.Extensions;
-using ECommerce.Infastructure.DbContexts;
-using EntityFrameworkCoreMock;
-using Microsoft.EntityFrameworkCore;
 
 namespace XUnitCRUDTest.Products
 {
     public class ProductAdderServiceTest
     {
         IProductAdderService _productService;
-        IProductGetterService _productGetterService;   
         ITestOutputHelper _testOutputHelper;
         Fixture _fixture;
         ProductGetterValidator _validator;
 
         public ProductAdderServiceTest(ITestOutputHelper testOutputHelper)
         {
-            DbContextMock<AppDbContext> dbContextMock = new DbContextMock<AppDbContext>(
-               new DbContextOptionsBuilder<AppDbContext>().Options
-               );
-
-            AppDbContext dbContext = dbContextMock.Object;
-            dbContextMock.CreateDbSetMock(temp => temp.Categories, SeedData.GetSeedCategories());
-            dbContextMock.CreateDbSetMock(temp => temp.Products, SeedData.GetSeedProducts());
-
-
-
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductAdderService(new ProductRepository(dbContext));
-            _productGetterService = new ProductGetterService(new ProductRepository(dbContext));
+            _productService = new ProductAdderService(
+                new ProductRepository(null)
+                );
             _fixture = new Fixture();
-            _validator = new ProductGetterValidator();    
+            _validator = new ProductGetterValidator();
         }
 
 
@@ -49,7 +36,7 @@ namespace XUnitCRUDTest.Products
             AddProductRequest addRequest = null;
             Func<Task> action = async () =>
             {
-                await _productService.AddProductAsycn(addRequest);
+                await _productService.AddProduct(addRequest);
             };
             _testOutputHelper.WriteLine($"Request: {addRequest}");
 
@@ -67,7 +54,7 @@ namespace XUnitCRUDTest.Products
             _testOutputHelper.WriteLine($"Request: {addRequest.ToJson()}");
             Func<Task> action = async () =>
             {
-                await _productService.AddProductAsycn(addRequest);
+                await _productService.AddProduct(addRequest);
             };
 
             var result = await action.Should().ThrowAsync<ArgumentException>();
@@ -90,7 +77,7 @@ namespace XUnitCRUDTest.Products
             _testOutputHelper.WriteLine($"Request: {addRequestnegativePrice.ToJson()}");
             Func<Task> action1 = async () =>
             {
-                await _productService.AddProductAsycn(addRequestnegativePrice);
+                await _productService.AddProduct(addRequestnegativePrice);
             };
 
             var result1 = await action1.Should().ThrowAsync<ArgumentException>();
@@ -99,26 +86,6 @@ namespace XUnitCRUDTest.Products
             _testOutputHelper.WriteLine($"{result1.Subject.ToJson()}");
             _testOutputHelper.WriteLine($"Resutl2: {result2 ?? null}");
             _testOutputHelper.WriteLine($"{result2.Subject.ToJson()}");
-        }
-
-
-        [Fact]
-        public async void AddProduct_ProperProduct_Succed()
-        {
-            //Arange
-            AddProductRequest request = _fixture.Build<AddProductRequest>()
-                .With(x=>x.ImageUrl,"www.product.com.tr")
-                .Create();
-
-            //Act
-            var x = await  _productService.AddProductAsycn(request);
-
-            var list = await _productGetterService.GetAllProducts();
-            _testOutputHelper.WriteLine(list.ToJson());
-
-
-            x.Should().NotBeNull();
-
         }
     }
 }

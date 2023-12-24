@@ -1,7 +1,6 @@
 ﻿using ECommerce.Core.Domain.RepositoryContracts;
 using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.DTOs.Response;
-using ECommerce.Core.Helpers.Extensions;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.ProductContracts;
 using FluentValidation;
@@ -19,12 +18,10 @@ namespace ECommerce.Core.Services.ProductServices
             _validator = new ProductAdderValidator();
         }
 
-        public async Task<AddProductResponse> AddProductAsycn(AddProductRequest request)
+        public Task<AddProductResponse> AddProduct(AddProductRequest request)
         {
             _validator.ValidateAndThrow(request);
-            var addedProduct = await _productsRepository.AddProductAsync(request.ToProduct());
-
-            return addedProduct.ToAddProductResponse();
+            throw new NotImplementedException();
         }
     }
 }

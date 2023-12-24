@@ -24,12 +24,7 @@ namespace ECommerce.Core.Services.ProductServices
 
         public async Task<List<Product>> GetAllProducts()
         {
-            
-
-            var persons = await _productsRepository.GetAllProductsAsync();
-
-            return persons;
-              //.Select(temp => temp.ToPersonResponse()).ToList();
+            return await _productsRepository.GetAllProductsAsync();
         }
 
         public GetProductResponse GetProduct(GetProductRequest request)

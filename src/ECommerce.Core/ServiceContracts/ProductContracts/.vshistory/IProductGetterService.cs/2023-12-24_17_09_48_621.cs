@@ -8,6 +8,6 @@ namespace ECommerce.Core.ServiceContracts.ProductContracts
     {
 
         GetProductResponse GetProduct(GetProductRequest request);
-         Task<List<Product>> GetAllProducts();
+        async Task<List<Product>> GetAllProducts();
     }
 }

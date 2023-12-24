@@ -22,9 +22,9 @@ namespace ECommerce.Core.Services.ProductServices
         public async Task<AddProductResponse> AddProductAsycn(AddProductRequest request)
         {
             _validator.ValidateAndThrow(request);
-            var addedProduct = await _productsRepository.AddProductAsync(request.ToProduct());
+            var RESULT = await _productsRepository.AddProductAync(request.ToProduct());
 
-            return addedProduct.ToAddProductResponse();
+            return null;
         }
     }
 }

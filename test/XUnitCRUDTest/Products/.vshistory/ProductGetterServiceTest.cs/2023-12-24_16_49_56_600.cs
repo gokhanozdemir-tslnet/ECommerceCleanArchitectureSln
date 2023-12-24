@@ -11,7 +11,6 @@ using ECommerce.Infastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.Core.Domain.Entities;
 using System.Drawing.Text;
-using FluentAssertions;
 
 
 namespace XUnitCRUDTest.Products
@@ -38,7 +37,7 @@ namespace XUnitCRUDTest.Products
 
 
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductGetterService(new ProductRepository(dbContext));
+            _productService = new ProductGetterService(new ProductRepository());
             _fixture = new Fixture();
             _validator = new ProductGetterValidator();
         }
@@ -90,16 +89,6 @@ namespace XUnitCRUDTest.Products
             _testOutputHelper.WriteLine($"Response: {response.ToJson()}");
             Assert.True(response.Title == "Phone");
 
-        }
-
-        [Fact]
-        private async void GetAllProducts()
-        {
-           var list = await _productService.GetAllProducts();
-            _testOutputHelper.WriteLine(list.ToJson());
-
-            list.Should().HaveCountGreaterThan(0);
-            
         }
     }
 

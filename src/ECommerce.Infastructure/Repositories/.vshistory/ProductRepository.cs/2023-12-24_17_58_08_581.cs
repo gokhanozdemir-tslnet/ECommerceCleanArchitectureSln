@@ -16,10 +16,9 @@ namespace ECommerce.Infastructure.Repositories
             _db = db;   
         }
 
-        public async Task<Product> AddProductAsync(Product product)
+        public async Product AddProductAsync(Product product)
         {
-             await _db.Products.AddAsync(product);
-            var x =await _db.SaveChangesAsync();
+            await _db.Products.AddAsync(product);
             return product;
         }
 

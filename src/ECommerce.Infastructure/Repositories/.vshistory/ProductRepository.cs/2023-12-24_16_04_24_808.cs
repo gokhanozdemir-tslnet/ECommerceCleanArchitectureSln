@@ -3,7 +3,6 @@
 using ECommerce.Core.Domain.Entities;
 using ECommerce.Core.Domain.RepositoryContracts;
 using ECommerce.Infastructure.DbContexts;
-using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infastructure.Repositories
 {
@@ -13,19 +12,17 @@ namespace ECommerce.Infastructure.Repositories
 
         public ProductRepository(AppDbContext db)
         {
-            _db = db;   
+                
         }
 
-        public async Task<Product> AddProductAsync(Product product)
+        public Product AddProduct(Product product)
         {
-             await _db.Products.AddAsync(product);
-            var x =await _db.SaveChangesAsync();
-            return product;
+            return _db.Products.Add(product);
         }
 
-        public async Task<List<Product>> GetAllProductsAsync()
+        public List<Product> GetAllProducts()
         {
-            return await _db.Products.ToListAsync();
+            return _db.Products.ToList();
         }
 
         public Product GetProductById(int productId)

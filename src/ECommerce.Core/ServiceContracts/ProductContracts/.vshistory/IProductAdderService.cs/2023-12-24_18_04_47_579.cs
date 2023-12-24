@@ -6,6 +6,6 @@ namespace ECommerce.Core.ServiceContracts.ProductContracts
 {
     public interface IProductAdderService
     {
-        Task<AddProductResponse> AddProductAsycn(AddProductRequest request);
+        Task<AddProductResponse> AddProductAsycn(AddProductRequest request)
     }
 }

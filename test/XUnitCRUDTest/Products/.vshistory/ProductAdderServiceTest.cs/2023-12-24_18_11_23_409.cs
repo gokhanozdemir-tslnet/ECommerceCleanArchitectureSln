@@ -17,28 +17,29 @@ namespace XUnitCRUDTest.Products
     public class ProductAdderServiceTest
     {
         IProductAdderService _productService;
-        IProductGetterService _productGetterService;   
         ITestOutputHelper _testOutputHelper;
         Fixture _fixture;
         ProductGetterValidator _validator;
 
         public ProductAdderServiceTest(ITestOutputHelper testOutputHelper)
         {
+
+
             DbContextMock<AppDbContext> dbContextMock = new DbContextMock<AppDbContext>(
-               new DbContextOptionsBuilder<AppDbContext>().Options
-               );
+                new DbContextOptionsBuilder<AppDbContext>().Options
+                );
 
             AppDbContext dbContext = dbContextMock.Object;
             dbContextMock.CreateDbSetMock(temp => temp.Categories, SeedData.GetSeedCategories());
             dbContextMock.CreateDbSetMock(temp => temp.Products, SeedData.GetSeedProducts());
 
 
-
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductAdderService(new ProductRepository(dbContext));
-            _productGetterService = new ProductGetterService(new ProductRepository(dbContext));
+            _productService = new ProductAdderService(
+                new ProductRepository(null)
+                );
             _fixture = new Fixture();
-            _validator = new ProductGetterValidator();    
+            _validator = new ProductGetterValidator();
         }
 
 
@@ -113,10 +114,7 @@ namespace XUnitCRUDTest.Products
             //Act
             var x = await  _productService.AddProductAsycn(request);
 
-            var list = await _productGetterService.GetAllProducts();
-            _testOutputHelper.WriteLine(list.ToJson());
-
-
+            
             x.Should().NotBeNull();
 
         }

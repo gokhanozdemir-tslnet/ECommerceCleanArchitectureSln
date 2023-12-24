@@ -22,14 +22,9 @@ namespace ECommerce.Core.Services.ProductServices
             _productsRepository = productsRepository;
         }
 
-        public async Task<List<Product>> GetAllProducts()
+        public List<Product> GetAllProducts()
         {
-            
-
-            var persons = await _productsRepository.GetAllProductsAsync();
-
-            return persons;
-              //.Select(temp => temp.ToPersonResponse()).ToList();
+            return _productsRepository.GetAllProducts();
         }
 
         public GetProductResponse GetProduct(GetProductRequest request)

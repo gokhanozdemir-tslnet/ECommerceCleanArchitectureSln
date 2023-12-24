@@ -1,7 +1,6 @@
 ﻿
 using AutoMapper;
 using ECommerce.Core.Domain.Entities;
-using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.DTOs.Response;
 
 namespace ECommerce.Core.Configuration.Mapper
@@ -12,7 +11,6 @@ namespace ECommerce.Core.Configuration.Mapper
         {
             CreateMap<Product, AddProductResponse>().ReverseMap(); 
             CreateMap<Product, GetProductResponse>().ReverseMap();
-            CreateMap<Product,AddProductRequest>().ReverseMap();
         }
     }
 }

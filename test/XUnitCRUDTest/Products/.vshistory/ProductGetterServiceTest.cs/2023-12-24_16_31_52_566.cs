@@ -10,20 +10,26 @@ using EntityFrameworkCoreMock;
 using ECommerce.Infastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using ECommerce.Core.Domain.Entities;
-using System.Drawing.Text;
-using FluentAssertions;
 
 
 namespace XUnitCRUDTest.Products
 {
+    private object categoriesInitializewData()
+    {
 
+        return new List<Category>
+        {
+            new Category { Id = 1, Name="Phones"},
+        new Category { Id = 2, Name = "Computers" }
+        };
+    }
     public class ProductGetterServiceTest
     {
         IProductGetterService _productService;
         ITestOutputHelper _testOutputHelper;
         Fixture _fixture;
         ProductGetterValidator _validator;
-
+        
 
         public ProductGetterServiceTest(ITestOutputHelper testOutputHelper)
         {
@@ -33,17 +39,16 @@ namespace XUnitCRUDTest.Products
                 );
 
             AppDbContext dbContext = dbContextMock.Object;
-            dbContextMock.CreateDbSetMock(temp => temp.Categories, SeedData.GetSeedCategories());
-            dbContextMock.CreateDbSetMock(temp => temp.Products, SeedData.GetSeedProducts());
+            dbContextMock.CreateDbSetMock(temp=>temp.Categories,categoriesInitializewData())
 
 
             _testOutputHelper = testOutputHelper;
-            _productService = new ProductGetterService(new ProductRepository(dbContext));
+            _productService = new ProductGetterService(new ProductRepository());
             _fixture = new Fixture();
             _validator = new ProductGetterValidator();
         }
 
-
+      
 
         [Fact]
         public void GetProduct_CheckArgumentNull_ThrowArgumentNullExcepiton()
@@ -69,7 +74,7 @@ namespace XUnitCRUDTest.Products
         [Fact]
         public void GetProduct_ProductIdIsZero_ThrowArgumentException()
         {
-            GetProductRequest request = new();
+            GetProductRequest request = new ();
             request.Id = 0;
 
             Assert.Throws<ArgumentException>(
@@ -89,74 +94,10 @@ namespace XUnitCRUDTest.Products
             var response = _productService.GetProduct(getProductRequest);
             _testOutputHelper.WriteLine($"Response: {response.ToJson()}");
             Assert.True(response.Title == "Phone");
-
-        }
-
-        [Fact]
-        private async void GetAllProducts()
-        {
-           var list = await _productService.GetAllProducts();
-            _testOutputHelper.WriteLine(list.ToJson());
-
-            list.Should().HaveCountGreaterThan(0);
             
         }
     }
-
-    static class SeedData
-    {
-        public static List<Category> GetSeedCategories()
-        {
-            return new List<Category>
-            {
-                new Category { Id = 1, Name="Phones"},
-                new Category { Id = 2, Name = "Computers" }
-            };
-        }
-        public static List<Product> GetSeedProducts()
-        {
-            return new List<Product>
-                {
-                    new Product
-                    {
-                        Id = 1, 
-                        CategoryId=1,
-                        Price = 80000M,
-                        Rate = 10,
-                        Stock = 100,
-                        ImageUrl ="wwww",
-                        Title = "Iphone 15",
-                        Details = new List<ProductDetail> { new ProductDetail { Id = 1,Description="this is the test desc" } }
-                    },
-                     new Product
-                    {
-                        Id = 2,
-                        CategoryId=1,
-                        Price = 60000M,
-                        Rate = 10,
-                        Stock = 100,
-                        ImageUrl ="wwww",
-                        Title = "Iphone 14",
-                        Details = new List<ProductDetail> { new ProductDetail { Id = 1,Description="this is the test desc" } }
-                    },
-                      new Product
-                    {
-                        Id = 3,
-                        CategoryId=1,
-                        Price = 80000M,
-                        Rate = 10,
-                        Stock = 100,
-                        ImageUrl ="wwww",
-                        Title = "Samsung",
-                        Details = new List<ProductDetail> { new ProductDetail { Id = 1,Description="this is the test desc" } }
-                    }
-
-                };
-
-        }
-    }
 }
-
 
 
 // GetProductRequest request = _fixture.Create<GetProductRequest>();

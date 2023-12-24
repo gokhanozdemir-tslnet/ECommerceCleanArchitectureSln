@@ -15,19 +15,12 @@ namespace ECommerce.Core.Helpers.Extensions
               .Map<GetProductResponse>(product);
             return response;
         }
-        public static Product ToProduct(this AddProductRequest reqproduct)
+        public static Product GetProduct(this AddProductRequest reqproduct)
         {
             Product product = AppMapperBase
             .Mapper
             .Map<Product>(reqproduct);
             return product;
-        }
-        public static AddProductResponse ToAddProductResponse(this Product product)
-        {
-            AddProductResponse addedproduct = AppMapperBase
-           .Mapper
-           .Map<AddProductResponse>(product);
-            return addedproduct;
         }
     }
 }

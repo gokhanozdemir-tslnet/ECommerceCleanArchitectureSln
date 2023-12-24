@@ -19,12 +19,11 @@ namespace ECommerce.Core.Services.ProductServices
             _validator = new ProductAdderValidator();
         }
 
-        public async Task<AddProductResponse> AddProductAsycn(AddProductRequest request)
+        public async Task<AddProductResponse> AddProduct(AddProductRequest request)
         {
             _validator.ValidateAndThrow(request);
-            var addedProduct = await _productsRepository.AddProductAsync(request.ToProduct());
 
-            return addedProduct.ToAddProductResponse();
+            return await _productsRepository.AddProductAync(request.ToProduct());
         }
     }
 }
