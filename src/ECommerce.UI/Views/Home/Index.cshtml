@@ -5,29 +5,22 @@
 
 <div class="row mt-5">
     @{
-        List<GetProductResponse> products = new List<GetProductResponse>
-    {
-        new GetProductResponse
+        List<GetProductResponse> products = new List<GetProductResponse>();
+
+        for(int i=0; i<20;i++)
         {
-        Id=1,
-        Category =new ECommerce.Core.Domain.Entities.Category{Id=1, Name="Cat"},
-        Title="Araba",
-        Rate=5,
-        Price=100M,
-        ImageUrl="https://imgur.com/edOjtEC.png"
-        },
+            products.Add(new GetProductResponse
+                {
+                    Id = 2,
+                    Category = new ECommerce.Core.Domain.Entities.Category { Id = 1, Name = "Cat" },
+                    Title = "Araba",
+                    Rate = 5,
+                    Price = 200M,
+                    ImageUrl = "https://imgur.com/edOjtEC.png"
+                });
+            i++;
+        }
 
-    new GetProductResponse
-    {
-    Id=2,
-    Category =new ECommerce.Core.Domain.Entities.Category{Id=1, Name="Cat"},
-    Title="Araba",
-    Rate=5,
-    Price=200M,
-    ImageUrl="https://imgur.com/edOjtEC.png"
-    },
-
-        };
     }
 
     @foreach (var item in products)
