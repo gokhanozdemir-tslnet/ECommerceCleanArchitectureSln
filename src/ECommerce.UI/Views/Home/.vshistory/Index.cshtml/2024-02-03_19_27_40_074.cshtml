@@ -1,0 +1,33 @@
+﻿@using ECommerce.Core.DTOs.Response
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row mt-5">
+    @{
+        List<GetProductResponse> products = new List<GetProductResponse>
+    {
+    new GetProductResponse
+    {
+    Id=1,
+    Category =new ECommerce.Core.Domain.Entities.Category{Id=1, Name="Cat"},
+    Title="Araba",
+    Rate=5,
+    Price=100M,
+    ImageUrl="https://imgur.com/edOjtEC.png"
+    }
+    };
+    }
+
+    @foreach(var item in products)
+    {
+    @*     <div>sdf</div> *@
+        @await Component.InvokeAsync("ProductCardItem",item)
+    }
+
+    
+    @await Component.InvokeAsync("ProductCardItem")
+    @await Component.InvokeAsync("ProductCardItem")
+    @await Component.InvokeAsync("ProductCardItem")
+
+</div>
