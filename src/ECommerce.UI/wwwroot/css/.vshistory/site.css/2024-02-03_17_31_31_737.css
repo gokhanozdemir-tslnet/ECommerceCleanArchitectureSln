@@ -1,0 +1,89 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+/*body {
+    background: #F5F1EE;
+    font-family: 'Roboto', sans-serif;
+}*/
+
+/*.card {
+    width: 250px;
+    border-radius: 10px;
+}
+*/
+.card-img-top {
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+span.text-muted {
+    font-size: 12px;
+}
+
+small.text-muted {
+    font-size: 8px;
+}
+
+h5.mb-0 {
+    font-size: 1rem;
+}
+
+small.ghj {
+    font-size: 9px;
+}
+
+.mid {
+    background: #ECEDF1;
+}
+
+h6.ml-1 {
+    font-size: 13px;
+}
+
+small.key {
+    text-decoration: underline;
+    font-size: 9px;
+    cursor: pointer;
+}
+
+.btn-danger {
+    color: #FFCBD2;
+}
+
+    .btn-danger:focus {
+        box-shadow: none;
+    }
+
+small.justify-content-center {
+    font-size: 9px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media screen and (max-width:600px) {
+    .col-sm-4 {
+        margin-bottom: 50px;
+    }
+}

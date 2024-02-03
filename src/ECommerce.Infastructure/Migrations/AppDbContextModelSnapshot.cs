@@ -54,7 +54,8 @@ namespace ECommerce.Infastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(15, 4)
+                        .HasColumnType("decimal(15,4)");
 
                     b.Property<int>("Rate")
                         .HasColumnType("int");
