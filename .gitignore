@@ -363,3 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 /src/ECommerce.Infastructure/DbContexts/.vshistory/AppDbContext.cs
 /test/XUnitCRUDTest/Products/.vshistory/ProductAdderServiceTest.cs
+/src/ECommerce.UI/Views/Home/.vshistory/Index.cshtml
+/src/ECommerce.UI/Views/Shared/.vshistory/_Layout.cshtml
+/src/ECommerce.UI/Views/Shared/Components/Product/.vshistory/ProductCardItem.cshtml
+/src/ECommerce.UI/wwwroot/css/.vshistory/site.css
