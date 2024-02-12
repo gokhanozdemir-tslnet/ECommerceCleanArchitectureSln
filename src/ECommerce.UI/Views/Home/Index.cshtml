@@ -2,7 +2,14 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-
+@* 
+<div>
+    CultureInfo.CurrentCulture :  @System.Globalization.CultureInfo.CurrentCulture
+</div>
+<div>
+    Thread.CurrentThread.CurrentCulture.Name :@Thread.CurrentThread.CurrentCulture.Name
+</div>
+ *@
 <div class="row mt-5">
     @{
         List<GetProductResponse> products = new List<GetProductResponse>();

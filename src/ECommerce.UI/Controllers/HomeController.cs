@@ -1,4 +1,5 @@
 using ECommerce.UI.Models;
+using ECommerce.UI.Resources;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +8,18 @@ namespace ECommerce.UI.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly GlobalResource _globalResource;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,
+                              GlobalResource globalResource)
         {
             _logger = logger;
+            _globalResource = globalResource;
         }
 
         public IActionResult Index()
         {
+            string k = _globalResource.Get("Home");
             return View();
         }
 

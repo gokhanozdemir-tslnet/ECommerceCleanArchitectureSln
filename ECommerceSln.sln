@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnitCRUDTest", "test\XUnit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "database", "database", "{B477DA40-7E4A-4361-A117-D731FC4E19A4}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ecommerce-reactui", "ecommerce-reactui\ecommerce-reactui.esproj", "{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,12 @@ Global
 		{B1FD55E1-5FDD-4187-81C5-97E4D9B8D269}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B1FD55E1-5FDD-4187-81C5-97E4D9B8D269}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B1FD55E1-5FDD-4187-81C5-97E4D9B8D269}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{6380F083-F7F0-4F45-AE4F-9DE806F02C41} = {FA72A89C-893E-4AD8-9E1C-0E21664E5B72}
 		{BCB89636-1417-4A99-AAF5-C8B19A58DE90} = {FA72A89C-893E-4AD8-9E1C-0E21664E5B72}
 		{B1FD55E1-5FDD-4187-81C5-97E4D9B8D269} = {9FFB66D3-A639-4E03-90A6-D64FC6967E57}
+		{EB38A93F-ACA4-4DF9-9F4F-3779FF9A2E33} = {FA72A89C-893E-4AD8-9E1C-0E21664E5B72}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E374D75C-5534-409D-9F24-63F4C7192138}
