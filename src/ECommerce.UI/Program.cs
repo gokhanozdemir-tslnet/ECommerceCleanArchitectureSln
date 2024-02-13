@@ -10,10 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 //multi language
+builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
 CultureInfo[] suportedCultures = new[]
 {
     new CultureInfo("tr-TR"),
-    new CultureInfo("en-US")
+    new CultureInfo("en-GB")
 
 };
 builder.Services.Configure<RequestLocalizationOptions>(
