@@ -375,3 +375,5 @@ FodyWeavers.xsd
 /src/ECommerce.UI/Views/Shared/Components/Header/.vshistory/Default.cshtml
 /src/ECommerce.UI/wwwroot/js/.vshistory/site.js
 /.vshistory/ECommerceSln.sln
+/src/ECommerce.UI/Areas/Admin/Controllers/.vshistory/HomeController.cs
+/src/ECommerce.UI/Areas/Admin/Views/Home/.vshistory/Index.cshtml
