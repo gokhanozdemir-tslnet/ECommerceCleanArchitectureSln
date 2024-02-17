@@ -377,3 +377,4 @@ FodyWeavers.xsd
 /.vshistory/ECommerceSln.sln
 /src/ECommerce.UI/Areas/Admin/Controllers/.vshistory/HomeController.cs
 /src/ECommerce.UI/Areas/Admin/Views/Home/.vshistory/Index.cshtml
+/src/ECommerce.Core/Helpers/Validations/.vshistory/ProductAdderValidator.cs
