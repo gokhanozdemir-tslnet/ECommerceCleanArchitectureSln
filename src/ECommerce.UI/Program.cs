@@ -1,5 +1,12 @@
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using ECommerce.Core.Domain.RepositoryContracts;
+using ECommerce.Core.ServiceContracts.ProductContracts;
+using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
+using ECommerce.Infastructure.Repositories;
 using ECommerce.UI.Resources;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +14,35 @@ using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//IOC Continer
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
+{
+    containerBuilder.RegisterType<ProductRepository>()
+    .As<IProductsRepository>().SingleInstance();
 
+    containerBuilder.RegisterType<ProductGetterService>()
+    .As<IProductGetterService>()
+    .UsingConstructor(typeof(IProductsRepository))
+    .InstancePerLifetimeScope();
+
+    containerBuilder.RegisterType<ProductAdderService>()
+   .As<IProductAdderService>()
+   .UsingConstructor(typeof(IProductsRepository))
+   .InstancePerLifetimeScope();
+
+
+
+});
+
+//end of IOc container
+
+// add fluent validation
+builder.Services.AddControllersWithViews().AddFluentValidation(
+
+    x => x.RegisterValidatorsFromAssemblyContaining<ProductAdderService>()
+
+    );
 
 //multi language
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -34,6 +69,8 @@ builder.Services.Configure<RequestLocalizationOptions>(
     );
 //eend of middle
 
+
+
 builder.Services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
 builder.Services.AddSingleton<GlobalResource>();
 
@@ -55,9 +92,7 @@ builder.Services.AddDbContext<AppDbContext>(
 var app = builder.Build();
 
 
-app.UseRequestLocalization(
-    //(options) => options.SetDefaultCulture("tr-TR")
-    );
+app.UseRequestLocalization();
 
 
 // Configure the HTTP request pipeline.
