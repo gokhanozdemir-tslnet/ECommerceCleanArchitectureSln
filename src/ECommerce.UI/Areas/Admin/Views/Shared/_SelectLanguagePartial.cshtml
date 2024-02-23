@@ -1,0 +1,68 @@
+﻿@using Microsoft.AspNetCore.Builder
+@using Microsoft.AspNetCore.Http.Features
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options
+
+
+
+@inject IViewLocalizer Localizer
+@inject IOptions<RequestLocalizationOptions> LocOptions
+
+
+@{
+    string getCode(string val) {
+        var xm = "&#127481;&#127479; TR";
+        var y = "&#x1F1EC;&#x1F1E7; EN";
+        if (val == "TR")
+        {
+            return xm;
+        }
+        else
+        {
+            return y;
+        }
+    }
+
+    
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    ViewBag.CurrentLanguage = (@requestCulture.RequestCulture).UICulture.Name.Split("-")[1];
+    ViewBag.SupportedLanguages = LocOptions.Value.SupportedUICultures
+        .Select(x =>
+        new SelectListItem
+                {
+                    Value = x.Name,
+                    Text = getCode(x.Name.Split("-")[1])  //"https://flagsapi.com/lang/shiny/64.png".Replace("lang", x.Name.Split("-")[1])
+                });
+
+    var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
+  
+}
+
+
+
+<div title="&#127481;&#127479; @requestCulture?.Provider?.GetType().Name">
+    <form id="selectLanguage" asp-controller="SetLanguage"
+          asp-action="Chance" asp asp-route-returnUrl="@returnUrl"
+          method="post" class="form-horizontal" role="form">
+        @*  <label asp-for="@requestCulture.RequestCulture.UICulture.Name">@Localizer["Language:"]</label> *@
+        <select name="culture" class="dropdown"
+                onchange="this.form.submit();"
+                asp-for="@requestCulture.RequestCulture.UICulture.Name">
+            @foreach (var item in ViewBag.SupportedLanguages)
+        {
+
+                <option value="@item.Value">@Html.Raw(item.Text)</option>
+              
+        }
+
+        </select>
+
+
+    </form>
+
+
+</div>
+@* https://www.quackit.com/character_sets/emoji/emoji_v3.0/unicode_emoji_v3.0_characters_flags.cfm
+ *@
+

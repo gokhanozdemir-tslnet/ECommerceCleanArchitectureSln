@@ -39,10 +39,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 
 // add fluent validation
 builder.Services.AddControllersWithViews().AddFluentValidation(
-
-    x => x.RegisterValidatorsFromAssemblyContaining<ProductAdderService>()
-
-    );
+    x => x.RegisterValidatorsFromAssemblyContaining<ProductAdderService>()  );
 
 //multi language
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");

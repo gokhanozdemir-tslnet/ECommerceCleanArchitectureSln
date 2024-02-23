@@ -50,6 +50,12 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create(AddProductRequest productToAdd)
         {
 
+            if (!ModelState.IsValid)
+            {
+                return View(productToAdd);
+            }
+
+            return RedirectToAction(nameof(Index));
             //Act
             var createdProduct =productToAdd;// await _productAdderService.AddProductAsycn(productToAdd);
 

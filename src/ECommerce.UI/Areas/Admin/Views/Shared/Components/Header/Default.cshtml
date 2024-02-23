@@ -1,0 +1,75 @@
+﻿@inject GlobalResource localizer 
+
+<header class="p-3 bg-dark text-white">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="https://cdn.icon-icons.com/icons2/1061/PNG/512/free_icon-icons.com_76795.png" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"></use></svg>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 text-secondary">@localizer.Get("Home")</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+                <li>
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">
+                         Admin
+                    </a>
+                </li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+            </form>
+
+            <div class="text-end">
+                <div class="dropdown">
+           @*          <a class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                        <i class="flag-united-kingdom flag m-0"></i>
+                    </a> *@
+
+                    <ul class="dropdown-menu" aria-labelledby="Dropdown">
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-united-kingdom flag"></i>English <i class="fa fa-check text-success ms-2"></i></a>
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-poland flag"></i>Polski</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-china flag"></i>中文</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-japan flag"></i>日本語</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-germany flag"></i>Deutsch</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-france flag"></i>Français</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-spain flag"></i>Español</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-russia flag"></i>Русский</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#"><i class="flag-portugal flag"></i>Português</a>
+                        </li>
+                        <li
+
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-outline-light me-2">Login</button>
+                <button type="button" class="btn btn-warning">Sign-up</button>
+                <button type="button" >@await Html.PartialAsync("_SelectLanguagePartial")</button>
+                
+            </div>
+        </div>
+    </div>
+</header>

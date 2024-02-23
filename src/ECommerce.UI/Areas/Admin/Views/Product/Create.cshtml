@@ -1,8 +1,8 @@
 ﻿
 @model ECommerce.Core.DTOs.Request.AddProductRequest
-
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-15">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -42,4 +42,8 @@
     </div>
 </div>
 
-<div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
