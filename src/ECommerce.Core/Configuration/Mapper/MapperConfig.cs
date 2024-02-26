@@ -13,6 +13,9 @@ namespace ECommerce.Core.Configuration.Mapper
             CreateMap<Product, AddProductResponse>().ReverseMap(); 
             CreateMap<Product, GetProductResponse>().ReverseMap();
             CreateMap<Product,AddProductRequest>().ReverseMap();
+
+            CreateMap<Category,AddCategoryRequest>().ReverseMap();  
+            CreateMap<Category,AddCategoryResponse>().ReverseMap();
         }
     }
 }

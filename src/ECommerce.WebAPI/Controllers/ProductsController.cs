@@ -22,7 +22,7 @@ namespace ECommerce.WebAPI.Controllers
                     Id = 1,
                     Category = new Category
                     {
-                        Id=1,
+                        Id= 1,
                         Name="test Product"
                     },
                     Title = "Phone",

@@ -109,8 +109,8 @@ namespace XUnitCRUDTest.Products
         {
             return new List<Category>
             {
-                new Category { Id = 1, Name="Phones"},
-                new Category { Id = 2, Name = "Computers" }
+                new Category { Name="Phones",Tags="Phones",Description="Telefonlar"},
+               
             };
         }
         public static List<Product> GetSeedProducts()

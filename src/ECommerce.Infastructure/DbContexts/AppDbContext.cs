@@ -15,11 +15,24 @@ namespace ECommerce.Infastructure.DbContexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>()
-                .Property(b => b.Price)
-                .HasPrecision(15, 4);
+
+
+
+            modelBuilder.Entity<Category>().Property(B => B.Id).HasColumnType("tinyint").UseIdentityColumn();
+
+
+            modelBuilder.Entity<Category>().Property(b => b.UId).ValueGeneratedOnAdd();  //UseIdentityColumn();
+            modelBuilder.Entity<Category>().Property(b=>b.CreatedDate).HasDefaultValue(DateTime.Now);
+
+            modelBuilder.Entity<Product>().Property(b => b.Price).HasPrecision(15, 4);
+            modelBuilder.Entity<Product>().Property(b => b.CategoryId).HasColumnType("tinyint");
+
+               
+
 
             base.OnModelCreating(modelBuilder);
         }
+
+       
     }
 }
