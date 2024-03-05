@@ -2,6 +2,7 @@
 using ECommerce.Core.Domain.Entities;
 using ECommerce.Core.Domain.RepositoryContracts;
 using ECommerce.Infastructure.DbContexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.Infastructure.Repositories
 {
@@ -19,5 +20,17 @@ namespace ECommerce.Infastructure.Repositories
             var resutl = await _db.SaveChangesAsync();
             return category;
         }
+
+        public IQueryable<Category> GetAllCategories()
+        {
+            return _db.Categories.AsQueryable();
+        }
+
+        public async Task<List<Category>> GetAllCategoriesASync()
+        {
+            return await _db.Categories.ToListAsync();
+        }
+
+      
     }
 }

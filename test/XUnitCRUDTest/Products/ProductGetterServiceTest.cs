@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using ECommerce.Core.Domain.Entities;
 using System.Drawing.Text;
 using FluentAssertions;
+using XUnitCRUDTest.Categories;
 
 
 namespace XUnitCRUDTest.Products
@@ -103,58 +104,7 @@ namespace XUnitCRUDTest.Products
         }
     }
 
-    static class SeedData
-    {
-        public static List<Category> GetSeedCategories()
-        {
-            return new List<Category>
-            {
-                new Category { Name="Phones",Tags="Phones",Description="Telefonlar"},
-               
-            };
-        }
-        public static List<Product> GetSeedProducts()
-        {
-            return new List<Product>
-                {
-                    new Product
-                    {
-                        Id = 1, 
-                        CategoryId=1,
-                        Price = 80000M,
-                        Rate = 10,
-                        Stock = 100,
-                        ImageUrl ="wwww",
-                        Title = "Iphone 15",
-                        Details = new List<ProductDetail> { new ProductDetail { Id = 1,Description="this is the test desc" } }
-                    },
-                     new Product
-                    {
-                        Id = 2,
-                        CategoryId=1,
-                        Price = 60000M,
-                        Rate = 10,
-                        Stock = 100,
-                        ImageUrl ="wwww",
-                        Title = "Iphone 14",
-                        Details = new List<ProductDetail> { new ProductDetail { Id = 1,Description="this is the test desc" } }
-                    },
-                      new Product
-                    {
-                        Id = 3,
-                        CategoryId=1,
-                        Price = 80000M,
-                        Rate = 10,
-                        Stock = 100,
-                        ImageUrl ="wwww",
-                        Title = "Samsung",
-                        Details = new List<ProductDetail> { new ProductDetail { Id = 1,Description="this is the test desc" } }
-                    }
-
-                };
-
-        }
-    }
+    
 }
 
 

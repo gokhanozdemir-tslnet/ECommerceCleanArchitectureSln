@@ -11,6 +11,7 @@ using ECommerce.Core.Helpers.Extensions;
 using ECommerce.Infastructure.DbContexts;
 using EntityFrameworkCoreMock;
 using Microsoft.EntityFrameworkCore;
+using XUnitCRUDTest.Categories;
 
 namespace XUnitCRUDTest.Products
 {
