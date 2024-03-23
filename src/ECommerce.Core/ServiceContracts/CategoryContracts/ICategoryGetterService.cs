@@ -1,11 +1,12 @@
 ﻿
 using ECommerce.Core.Domain.Entities;
+using ECommerce.Core.DTOs.Response;
 
 namespace ECommerce.Core.ServiceContracts.CategoryContracts
 {
     public interface ICategoryGetterService
     {
-        IQueryable<Category> GetCategories();
+        Task<IQueryable<GetCategoryResponse>> GetCategories();
         Task<List<Category>> GetAllCategoriesASync();
     }
 }

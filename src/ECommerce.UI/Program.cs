@@ -1,7 +1,9 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ECommerce.Core.Domain.RepositoryContracts;
+using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.Core.ServiceContracts.ProductContracts;
+using ECommerce.Core.Services.CategoryServices;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
@@ -30,6 +32,19 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
    .As<IProductAdderService>()
    .UsingConstructor(typeof(IProductsRepository))
    .InstancePerLifetimeScope();
+
+    containerBuilder.RegisterType<CategoryRepository>()
+    .As<ICategoriesRepository>().SingleInstance();
+
+    containerBuilder.RegisterType<CategoryGetterService>()
+    .As<ICategoryGetterService>()
+    .UsingConstructor(typeof(ICategoriesRepository))
+    .InstancePerLifetimeScope();
+
+    containerBuilder.RegisterType<CategoryAdderService>()
+    .As<ICategoryAdderService>()
+    .UsingConstructor(typeof(ICategoriesRepository))
+    .InstancePerLifetimeScope();
 
 
 

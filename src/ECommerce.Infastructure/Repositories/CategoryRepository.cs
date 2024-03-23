@@ -21,16 +21,19 @@ namespace ECommerce.Infastructure.Repositories
             return category;
         }
 
-        public IQueryable<Category> GetAllCategories()
-        {
-            return _db.Categories.AsQueryable();
-        }
+        //public IQueryable<Category> GetAllCategories()
+        //{
+        //    return _db.Categories.AsQueryable();
+        //}
 
         public async Task<List<Category>> GetAllCategoriesASync()
         {
             return await _db.Categories.ToListAsync();
         }
 
-      
+        public  IQueryable<Category> GetAllCategories()
+        {
+            return _db.Categories.AsQueryable() ;
+        }
     }
 }

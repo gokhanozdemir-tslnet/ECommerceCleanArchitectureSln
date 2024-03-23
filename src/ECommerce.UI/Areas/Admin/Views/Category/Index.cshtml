@@ -1,0 +1,62 @@
+﻿ @model IQueryable<ECommerce.Core.DTOs.Response.GetCategoryResponse>
+
+@{
+    ViewData["Title"] = "Index";
+}
+@* @import url("https://fonts.googleapis.com/icon?family=Material+Icons"); *@
+@* https://fontawesome.com/search?o=r&m=free *@
+<div class="row mt-8">
+
+
+ 
+
+
+
+
+
+    <div class="col-12">
+        <h1>Index</h1>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">ParentCategory</th>
+                    <th scope="col">CreatedDate</th>
+                    <th scope="col">UpdatedDate</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th scope="row">@item.Id</th>
+                        <td>@item.Name</td>
+                        <td>@item.Tags</td>
+                        <td>@item.Description</td>
+                        <td>@item.ParentCategoryId</td>
+                        <td>@item.CreatedDate</td>
+                        <td>@item.UpdatedDate</td>
+                    </tr>
+                }           
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6" ></td>
+                   
+                    <td>
+                       
+                        <a  asp-area="Admin" asp-controller="Product" asp-action="Create">      
+                         
+                            <button class="btn btn-warning btn-sm"><i class="fa fa-add"></i> Create New</button>
+                        </a>
+                        
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+</div>

@@ -2,6 +2,8 @@
 
 using ECommerce.Core.Domain.Entities;
 using ECommerce.Core.Domain.RepositoryContracts;
+using ECommerce.Core.DTOs.Response;
+using ECommerce.Core.Helpers.Extensions;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.CategoryContracts;
 
@@ -18,9 +20,9 @@ namespace ECommerce.Core.Services.CategoryServices
             //_validator = new CategoryAdderValidator();
         }
 
-        public IQueryable<Category> GetCategories()
+        public async Task<IQueryable<GetCategoryResponse>> GetCategories()
         {
-            return  _categoryRepository.GetAllCategories();
+            return _categoryRepository.GetAllCategories().Select(x=>x.ToGetCategoryResponse());
         }
         public async Task<List<Category>> GetAllCategoriesASync()
         {
