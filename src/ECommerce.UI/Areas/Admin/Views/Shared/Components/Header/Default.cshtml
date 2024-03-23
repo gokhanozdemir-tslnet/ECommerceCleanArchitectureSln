@@ -1,4 +1,4 @@
-﻿@inject GlobalResource localizer 
+﻿@inject GlobalResource localizer
 
 <header class="p-3 bg-dark text-white">
     <div class="container">
@@ -8,15 +8,20 @@
             </a>
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 text-secondary">@localizer.Get("Home")</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Features</a></li>
+                <li>
+                    <a href="#" class="nav-link px-2 text-secondary">
+                        <i class="fa fa-home"></i> @localizer.Get("Home")
+                    </a>
+                </li>
+                <li><a href="#" class="nav-link px-2 text-white">Features xx</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Pricing</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+
                 <li>
-                    <a asp-area="Admin" asp-controller="Home" asp-action="Index">
-                         Admin
+                    <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-link px-2 text-secondary">
+                        <i class="fa fa-person"></i> admin
                     </a>
                 </li>
             </ul>
@@ -27,8 +32,8 @@
 
             <div class="text-end">
                 <div class="dropdown">
-           @*          <a class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                        <i class="flag-united-kingdom flag m-0"></i>
+                    @*          <a class="dropdown-toggle" href="#" id="Dropdown" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+                    <i class="flag-united-kingdom flag m-0"></i>
                     </a> *@
 
                     <ul class="dropdown-menu" aria-labelledby="Dropdown">
@@ -67,8 +72,8 @@
                 </div>
                 <button type="button" class="btn btn-outline-light me-2">Login</button>
                 <button type="button" class="btn btn-warning">Sign-up</button>
-                <button type="button" >@await Html.PartialAsync("_SelectLanguagePartial")</button>
-                
+                <button type="button">@await Html.PartialAsync("_SelectLanguagePartial")</button>
+
             </div>
         </div>
     </div>
