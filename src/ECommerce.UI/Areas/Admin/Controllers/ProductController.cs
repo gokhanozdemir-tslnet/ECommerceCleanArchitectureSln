@@ -5,6 +5,7 @@ using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
@@ -14,13 +15,13 @@ namespace ECommerce.UI.Areas.Admin.Controllers
     {
 
 
-        IProductGetterService _productGetterService;      
+        IProductGetterService _productGetterService;
         ProductGetterValidator _validator;
-       IProductAdderService _productAdderService;
+        IProductAdderService _productAdderService;
 
 
         public ProductController(
-            IProductGetterService productGettterService, 
+            IProductGetterService productGettterService,
             IProductAdderService productAdderService
             )
         {
@@ -35,14 +36,17 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var productList = await _productGetterService.GetAllProducts();
-          
+
             return View(productList);
         }
 
 
         [HttpGet]
         public async Task<IActionResult> Create()
-        {       
+        {
+            ViewBag.Categories = new List<SelectListItem>{ 
+                new SelectListItem {Text = "Elektronik", Value = "2"}, 
+                new SelectListItem {Text = "Bilgisayar", Value = "12"} };
             return View();
         }
 
@@ -57,7 +61,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
             return RedirectToAction(nameof(Index));
             //Act
-            var createdProduct =productToAdd;// await _productAdderService.AddProductAsycn(productToAdd);
+            var createdProduct = productToAdd;// await _productAdderService.AddProductAsycn(productToAdd);
 
 
             return View(createdProduct);
