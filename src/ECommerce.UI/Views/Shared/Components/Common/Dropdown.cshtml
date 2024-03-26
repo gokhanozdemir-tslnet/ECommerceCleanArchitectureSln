@@ -4,9 +4,9 @@
 @{
 }
 
-@model ModelExpression;
+@model DropdownCompViewModel;
 
-<select asp-for="@Model.Name"  asp-items="@ViewBag.Categories" class="form-control" class="form-select">
+<select asp-for="@Model.AspFor"  asp-items="@Model.List" class="form-control" class="form-select">
     <option>Please select</option>
 </select>
 
