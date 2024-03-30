@@ -15,7 +15,7 @@
             <label asp-for="Data.ParentCategoryId" class="control-label"></label>
             @* <input asp-for="ParentCategoryId" class="form-control" /> *@
             <select asp-for="Data.ParentCategoryId" asp-items="@ViewBag.Categories" class="form-control" class="form-select">
-            <option>Please select</option>
+            <option value="0">Please select</option>
             </select>
             <span asp-validation-for="Data.ParentCategoryId" class="text-danger"></span>
         </div>

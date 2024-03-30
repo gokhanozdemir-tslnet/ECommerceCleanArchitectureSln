@@ -36,9 +36,10 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categories = new List<SelectListItem>{
-                new SelectListItem {Text = "Elektronik", Value = "2"},
-                new SelectListItem {Text = "Bilgisayar", Value = "12"} };
+
+            var x = await _categoryGetterService.GetCategories();            
+            ViewBag.Categories = x.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
+        
 
             return View();
         }
@@ -47,12 +48,8 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create(CategoryViewModel<AddCategoryRequest> addCategory)
         {
             _categoryVM.Data = addCategory.Data;
-
-            ViewBag.Categories = new List<SelectListItem>{
-                new SelectListItem {Text = "Elektronik", Value = "2"},
-                new SelectListItem {Text = "Bilgisayar", Value = "12"} };
-
-
+            var x = await _categoryGetterService.GetCategories();
+            ViewBag.Categories = x.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
             if (!ModelState.IsValid)
             {
                 _categoryVM.IsSucced = false;

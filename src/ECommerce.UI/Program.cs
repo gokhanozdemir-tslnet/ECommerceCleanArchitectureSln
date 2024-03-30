@@ -12,9 +12,22 @@ using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 using System.Globalization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+
+//Logging Serilog
+builder.Host.UseSerilog(
+    (HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration)
+    =>
+    {
+        loggerConfiguration.ReadFrom.Configuration(context.Configuration)
+        .ReadFrom.Services(services);
+    }
+    );
 
 //IOC Continer
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -39,7 +52,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     containerBuilder.RegisterType<CategoryGetterService>()
     .As<ICategoryGetterService>()
     .UsingConstructor(typeof(ICategoriesRepository))
-    .InstancePerLifetimeScope();
+    .SingleInstance();
 
     containerBuilder.RegisterType<CategoryAdderService>()
     .As<ICategoryAdderService>()
@@ -54,7 +67,7 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 
 // add fluent validation
 builder.Services.AddControllersWithViews().AddFluentValidation(
-    x => x.RegisterValidatorsFromAssemblyContaining<ProductAdderService>()  );
+    x => x.RegisterValidatorsFromAssemblyContaining<ProductAdderService>());
 
 //multi language
 builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -68,7 +81,7 @@ builder.Services.Configure<RequestLocalizationOptions>(
     options =>
     {
         options.DefaultRequestCulture = new RequestCulture("tr-TR");
-        
+
         options.SupportedCultures = suportedCultures;
         options.SupportedUICultures = suportedCultures;
         options.RequestCultureProviders = new List<IRequestCultureProvider>
