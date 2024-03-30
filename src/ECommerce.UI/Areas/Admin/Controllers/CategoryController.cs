@@ -13,7 +13,6 @@ namespace ECommerce.UI.Areas.Admin.Controllers
     {
         private readonly ICategoryGetterService _categoryGetterService;
         private readonly ICategoryAdderService _categoryAdderService;
-        private readonly CategoryAdderValidator addCategoryValidation;
         private readonly CategoryViewModel<AddCategoryRequest> _categoryVM = 
             new CategoryViewModel<AddCategoryRequest>();
 
@@ -22,7 +21,6 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         {
             _categoryGetterService = categoryGetterService;
             _categoryAdderService = categoryAdderService;
-            addCategoryValidation = new CategoryAdderValidator();
            
         }
 
