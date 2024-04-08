@@ -5,6 +5,7 @@ using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.UI.Areas.Admin.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Serilog;
 
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
@@ -15,12 +16,15 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         private readonly ICategoryAdderService _categoryAdderService;
         private readonly CategoryViewModel<AddCategoryRequest> _categoryVM = 
             new CategoryViewModel<AddCategoryRequest>();
+        private readonly IDiagnosticContext _diagnoserContext;
 
         public CategoryController(ICategoryGetterService categoryGetterService,
-            ICategoryAdderService categoryAdderService)
+            ICategoryAdderService categoryAdderService,
+            IDiagnosticContext diagnostic)
         {
             _categoryGetterService = categoryGetterService;
             _categoryAdderService = categoryAdderService;
+            _diagnoserContext = diagnostic;
            
         }
 
@@ -45,6 +49,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CategoryViewModel<AddCategoryRequest> addCategory)
         {
+            _diagnoserContext.Set("Category", addCategory);
             _categoryVM.Data = addCategory.Data;
             var x = await _categoryGetterService.GetCategories();
             ViewBag.Categories = x.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });

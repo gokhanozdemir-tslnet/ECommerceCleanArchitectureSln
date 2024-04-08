@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ECommerce.Core.Domain.IdentityEntities;
 using ECommerce.Core.Domain.RepositoryContracts;
 using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.Core.ServiceContracts.ProductContracts;
@@ -7,8 +8,11 @@ using ECommerce.Core.Services.CategoryServices;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
+using ECommerce.UI.Extensions.Startup;
 using ECommerce.UI.Resources;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
@@ -63,61 +67,23 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
 
 });
 
-//end of IOc container
-
-// add fluent validation
-builder.Services.AddControllersWithViews().AddFluentValidation(
-    x => x.RegisterValidatorsFromAssemblyContaining<ProductAdderService>());
-
-//multi language
-builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
-CultureInfo[] suportedCultures = new[]
-{
-    new CultureInfo("tr-TR"),
-    new CultureInfo("en-GB")
-
-};
-builder.Services.Configure<RequestLocalizationOptions>(
-    options =>
-    {
-        options.DefaultRequestCulture = new RequestCulture("tr-TR");
-
-        options.SupportedCultures = suportedCultures;
-        options.SupportedUICultures = suportedCultures;
-        options.RequestCultureProviders = new List<IRequestCultureProvider>
-        {
-            new QueryStringRequestCultureProvider(),
-            new CookieRequestCultureProvider(),
-        };
-
-    }
-    );
-//eend of middle
 
 
+builder.Services.ConfigureServices(builder.Configuration);
 
-builder.Services.AddControllersWithViews().AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix);
-builder.Services.AddSingleton<GlobalResource>();
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 
 
 var name = typeof(AppDbContext).Assembly.GetName().Name;
 
-builder.Services.AddDbContext<AppDbContext>(
-    options =>
-    {
-        options.UseSqlServer(
-            builder.Configuration.GetConnectionString("ECommerceDb")
-            );
-    }
-    );
+
 
 var app = builder.Build();
 
 
 app.UseRequestLocalization();
+app.UseSerilogRequestLogging();
+
 
 
 // Configure the HTTP request pipeline.
@@ -129,6 +95,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

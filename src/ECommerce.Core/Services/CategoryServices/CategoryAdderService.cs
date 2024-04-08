@@ -22,6 +22,7 @@ namespace ECommerce.Core.Services.CategoryServices
 
         public async Task<AddCategoryResponse> AddCategoryAsycn(AddCategoryRequest addRequest)
         {
+            throw new Exception("sdfsdfsf");
             _validator.ValidateAndThrow(addRequest);
             var addedCategory = await _categoryRepository.AddCategoryAsync(addRequest.ToCategory());
 

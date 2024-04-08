@@ -1,0 +1,72 @@
+﻿@using ECommerce.UI.Areas.Admin.Models
+@model ECommerce.Core.DTOs.Request.AppUser.RegisterRequest;
+
+<div class="row">
+    <form asp-action="Register"  asp-controller="Account">
+        <div asp-validation-summary="All" class="text-danger"></div>
+      @*   <div class="text-danger"> @Model?.ErrorMessage </div>
+        <div class="text-danger"> @Model?.SuccedMessage </div> *@
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="ConfirmPassword" class="control-label"></label>
+            <input asp-for="ConfirmPassword" class="form-control" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Surname" class="control-label"></label>
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="BirthDate" class="control-label"></label>
+            <input asp-for="BirthDate" class="form-control" />
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Adress" class="control-label"></label>
+            <input asp-for="Adress" class="form-control" />
+            <span asp-validation-for="Adress" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="City" class="control-label"></label>
+            <input asp-for="City" class="form-control" />
+            <span asp-validation-for="City" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Country" class="control-label"></label>
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+       @*  <div class="form-group">
+            <label asp-for="Surname" class="control-label"></label> *@
+            @* <input asp-for="ParentCategoryId" class="form-control" /> *@
+         @*    <select asp-for="Data.ParentCategoryId" asp-items="@ViewBag.Categories" class="form-control" class="form-select">
+                <option value="0">Please select</option>
+            </select>
+            <span asp-validation-for="Data.ParentCategoryId" class="text-danger"></span>
+        </div>
+       *@
+        <div class="form-group">
+            <input type="submit" value="Register" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

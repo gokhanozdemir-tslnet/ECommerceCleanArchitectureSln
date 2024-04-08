@@ -1,7 +1,9 @@
 ﻿
 using AutoMapper;
 using ECommerce.Core.Domain.Entities;
+using ECommerce.Core.Domain.IdentityEntities;
 using ECommerce.Core.DTOs.Request;
+using ECommerce.Core.DTOs.Request.AppUser;
 using ECommerce.Core.DTOs.Response;
 
 namespace ECommerce.Core.Configuration.Mapper
@@ -17,6 +19,10 @@ namespace ECommerce.Core.Configuration.Mapper
             CreateMap<Category,AddCategoryRequest>().ReverseMap();  
             CreateMap<Category,AddCategoryResponse>().ReverseMap();
             CreateMap<Category, GetCategoryResponse>().ReverseMap();
+
+
+            //Identity 
+            CreateMap<AppUser, RegisterRequest>().ReverseMap();
         }
     }
 }

@@ -1,5 +1,6 @@
 using ECommerce.UI.Models;
 using ECommerce.UI.Resources;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -17,6 +18,8 @@ namespace ECommerce.UI.Controllers
             _globalResource = globalResource;
         }
 
+        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Index()
         {
             string k = _globalResource.Get("Home");
