@@ -1,6 +1,24 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<div class="row mt-5">Login</div>
+﻿@model ECommerce.Core.DTOs.Request.AppUser.LoginRequest;
+
+
+<div class="row">
+    <form asp-action="Login" asp-controller="Account">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        @*   <div class="text-danger"> @Model?.ErrorMessage </div>
+        <div class="text-danger"> @Model?.SuccedMessage </div> *@
+        <div class="form-group">
+            <label asp-for="Email" class="control-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Password" class="control-label"></label>
+            <input asp-for="Password" class="form-control" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+     
+        <div class="form-group">
+            <input type="submit" value="SigIn" class="btn btn-primary" />
+        </div>
+    </form>
+</div>
