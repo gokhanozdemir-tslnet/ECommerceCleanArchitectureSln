@@ -2,7 +2,9 @@
 
 
 <div class="row">
-    <form asp-action="Login" asp-controller="Account">
+    <form asp-action="Login" asp-controller="Account"
+        asp-route-ReturnUrl="@Context.Request.Query["ReturnUrl"]"
+    >
         <div asp-validation-summary="All" class="text-danger"></div>
         @*   <div class="text-danger"> @Model?.ErrorMessage </div>
         <div class="text-danger"> @Model?.SuccedMessage </div> *@

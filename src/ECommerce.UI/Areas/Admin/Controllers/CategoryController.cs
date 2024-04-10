@@ -3,6 +3,7 @@ using ECommerce.Core.DTOs.Response;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.UI.Areas.Admin.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Serilog;
@@ -10,6 +11,7 @@ using Serilog;
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "User,Admin")]
     public class CategoryController : Controller
     {
         private readonly ICategoryGetterService _categoryGetterService;
@@ -35,13 +37,14 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             return View(categories);
         }
 
+        #region Create
         [HttpGet]
         public async Task<IActionResult> Create()
         {
 
-            var x = await _categoryGetterService.GetCategories();            
+            var x = await _categoryGetterService.GetCategories();
             ViewBag.Categories = x.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
-        
+
 
             return View();
         }
@@ -60,7 +63,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             }
             try
             {
-              
+
                 var addedResponse = await _categoryAdderService.AddCategoryAsycn(addCategory.Data);
                 _categoryVM.Data.Id = addedResponse.Id;
                 _categoryVM.IsSucced = true;
@@ -74,6 +77,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             }
 
             return View(_categoryVM);
-        }
+        } 
+        #endregion
     }
 }

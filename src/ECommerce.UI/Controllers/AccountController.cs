@@ -25,14 +25,14 @@ namespace ECommerce.UI.Controllers
 
         #region Login
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize("NotAuthorized")]
         public async Task<IActionResult> Login()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize("NotAuthorized")]
         public async Task<IActionResult> Login(LoginRequest login)
         {
             if (!ModelState.IsValid)
@@ -55,7 +55,7 @@ namespace ECommerce.UI.Controllers
         #endregion
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize("NotAuthorized")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -65,6 +65,7 @@ namespace ECommerce.UI.Controllers
         #region Register
         [HttpGet]
         [AllowAnonymous]
+        [Authorize("NotAuthorized")]
         public async Task<IActionResult> Register()
         {
             return View();
@@ -72,6 +73,7 @@ namespace ECommerce.UI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [Authorize("NotAuthorized")]
         public async Task<IActionResult> Register(RegisterRequest user)
         {
 

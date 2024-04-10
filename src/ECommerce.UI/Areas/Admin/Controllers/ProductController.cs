@@ -4,6 +4,7 @@ using ECommerce.Core.ServiceContracts.ProductContracts;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace ECommerce.UI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "User,Admin")]
     public class ProductController : Controller
     {
 
