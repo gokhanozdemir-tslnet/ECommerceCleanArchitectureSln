@@ -2,6 +2,7 @@
 
 
 using ECommerce.Core.Domain.Entities;
+using ECommerce.Core.DTOs.Response;
 
 namespace ECommerce.Core.Domain.RepositoryContracts
 {
@@ -9,6 +10,8 @@ namespace ECommerce.Core.Domain.RepositoryContracts
     {
         Task<Category> AddCategoryAsync(Category value);
         IQueryable<Category> GetAllCategories();
-        Task<List<Category>> GetAllCategoriesASync();    
+        Task<List<Category>> GetAllCategoriesASync();
+        Task<Category> GetCategoryById(int id);
+        Task<Category> UpdateCategoryAsync(Category category);
     }
 }

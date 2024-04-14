@@ -6,14 +6,6 @@
 @* @import url("https://fonts.googleapis.com/icon?family=Material+Icons"); *@
 @* https://fontawesome.com/search?o=r&m=free *@
 <div class="row mt-8">
-
-
- 
-
-
-
-
-
     <div class="col-12">
         <h1>Index</h1>
         <table class="table table-striped table-dark">
@@ -39,6 +31,12 @@
                         <td>@item.ParentCategoryId</td>
                         <td>@item.CreatedDate</td>
                         <td>@item.UpdatedDate</td>
+                        <td>
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Update" asp-route-id="@item.Id">
+
+                                <div class="btn btn-warning btn-sm"><i class="fa fa-square-plus"></i> Create New</div>
+                            </a>
+                        </td>
                     </tr>
                 }           
             </tbody>

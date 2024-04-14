@@ -44,8 +44,6 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
             var x = await _categoryGetterService.GetCategories();
             ViewBag.Categories = x.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
-
-
             return View();
         }
 
@@ -77,7 +75,30 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             }
 
             return View(_categoryVM);
-        } 
+        }
         #endregion
+        #region Update
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
+        {
+            var result = new CategoryViewModel<GetCategoryResponse>();
+            result.Data= await _categoryGetterService.GetCategoryById(id);
+            result.IsSucced= true;
+            return View(result.Data);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(UpdateCategoryRequest category)
+        {
+            if (!ModelState.IsValid)
+            {
+                _categoryVM.IsSucced = false;
+                return View(_categoryVM);
+            }
+            await _categoryAdderService.UpdateCategoryAsync(category);
+            var x = await _categoryGetterService.GetCategoryById(category.Id);
+            return View(x);
+        }
+        #endregion
+
     }
 }

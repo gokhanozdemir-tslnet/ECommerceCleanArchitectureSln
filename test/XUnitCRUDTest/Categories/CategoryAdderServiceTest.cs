@@ -45,6 +45,7 @@ namespace XUnitCRUDTest.Categories
             _fixture = new Fixture();
             _validator = new CategoryAdderValidator();
         }
+        #region CategoryAddOperations
 
         [Fact]
         public async void AddCategory_CheckArgumentNull_ThrowArgumentNullException()
@@ -64,7 +65,7 @@ namespace XUnitCRUDTest.Categories
         [Fact]
         public async void AddCategory_Check_Category_Name_Is_Null_Throw_Argument_Exception()
         {
-            AddCategoryRequest addCategoryRequest = _fixture.Build<AddCategoryRequest>().With( x => x.Name , "").Create();
+            AddCategoryRequest addCategoryRequest = _fixture.Build<AddCategoryRequest>().With(x => x.Name, "").Create();
 
             _testOutputHelper.WriteLine($"Request: {addCategoryRequest.ToJson()}");
 
@@ -98,8 +99,8 @@ namespace XUnitCRUDTest.Categories
         {
             //Arange
             AddCategoryRequest request = _fixture.Build<AddCategoryRequest>()
-                .With(x=>x.Id,0)
-                .With(x=>x.ParentCategoryId,0)
+                .With(x => x.Id, 0)
+                .With(x => x.ParentCategoryId, 0)
                 .Create();
 
             //Act
@@ -112,6 +113,26 @@ namespace XUnitCRUDTest.Categories
             result.Should().NotBeNull();
 
         }
+        #endregion
+
+        #region CategoryUpdateService
+
+        [Fact]
+        public async void UpdateCategory_CheckArgumentNull_ThrowArgumentNullException()
+        {
+            UpdateCategoryRequest updateRequest = null;
+            Func<Task> action = async () =>
+            {
+                object value = await _categoryAdderService.UpdateCategoryAsync(updateRequest);
+            };
+
+            _testOutputHelper.WriteLine($"Request: {updateRequest}");
+
+            var result = await action.Should().ThrowAsync<ArgumentNullException>();
+            _testOutputHelper.WriteLine($"Resutl: {result ?? null}");
+        }
+
+        #endregion
     }
 
 }

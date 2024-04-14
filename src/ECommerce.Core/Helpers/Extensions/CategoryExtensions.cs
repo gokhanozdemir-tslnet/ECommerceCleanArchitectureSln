@@ -17,7 +17,15 @@ namespace ECommerce.Core.Helpers.Extensions
             return category;
         }
 
-        public static AddCategoryResponse ToCategory(this Category reqCategory)
+        public static Category ToCategory(this UpdateCategoryRequest reqCategory)
+        {
+            Category category = AppMapperBase
+            .Mapper
+            .Map<Category>(reqCategory);
+            return category;
+        }
+
+        public static AddCategoryResponse ToAddCategoryResponse(this Category reqCategory)
         {
             AddCategoryResponse category = AppMapperBase
             .Mapper
@@ -30,6 +38,14 @@ namespace ECommerce.Core.Helpers.Extensions
             GetCategoryResponse category = AppMapperBase
             .Mapper
             .Map<GetCategoryResponse>(reqCategory);
+            return category;
+        }
+
+        public static UpdateCategoryResponse ToUpdateCategoryResponse(this Category reqCategory)
+        {
+            UpdateCategoryResponse category = AppMapperBase
+            .Mapper
+            .Map<UpdateCategoryResponse>(reqCategory);
             return category;
         }
     }

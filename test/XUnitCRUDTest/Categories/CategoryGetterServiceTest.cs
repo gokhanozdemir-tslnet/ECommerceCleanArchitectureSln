@@ -93,6 +93,16 @@ namespace XUnitCRUDTest.Categories
             result.Should().HaveCountGreaterThan(0);
 
         }
+
+
+        [Fact]
+        public async void GetCategoryById_Succed()
+        {
+            int i = 1;
+            var result = await _categoryGetterService.GetCategoryById(i);
+            _testOutputHelper.WriteLine($"Resutl: {result ?? null}");
+            result.Name.Length.Should().BeGreaterThan(2);
+        }
     }
 
     static class SeedData
@@ -102,6 +112,7 @@ namespace XUnitCRUDTest.Categories
             return new List<Category>
             {
                 new Category { Name="Phones",Tags="Phones",Description="Telefonlar"},
+                new Category { Name="Bilgisayar",Tags="Bilgisayar",Description="Bilgisayar"},
 
             };
         }
@@ -111,7 +122,7 @@ namespace XUnitCRUDTest.Categories
                 {
                     new Product
                     {
-                        Id = 0,
+                        Id = 1,
                         CategoryId=1,
                         Price = 80000M,
                         Rate = 10,
@@ -122,8 +133,8 @@ namespace XUnitCRUDTest.Categories
                     },
                      new Product
                     {
-                        Id = 0,
-                        CategoryId=1,
+                        Id = 2,
+                        CategoryId=2,
                         Price = 60000M,
                         Rate = 10,
                         Stock = 100,
@@ -133,8 +144,8 @@ namespace XUnitCRUDTest.Categories
                     },
                       new Product
                     {
-                        Id = 0,
-                        CategoryId=1,
+                        Id = 3,
+                        CategoryId=3,
                         Price = 80000M,
                         Rate = 10,
                         Stock = 100,

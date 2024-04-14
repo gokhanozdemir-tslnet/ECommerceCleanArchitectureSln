@@ -13,20 +13,29 @@ namespace ECommerce.Core.Services.CategoryServices
     {
         private readonly ICategoriesRepository _categoryRepository;
         private readonly CategoryAdderValidator _validator;
+        private readonly CategoryUpdaterValidator _updaterValidator;
 
         public CategoryAdderService(ICategoriesRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
             _validator = new CategoryAdderValidator();
+            _updaterValidator = new CategoryUpdaterValidator();
         }
 
         public async Task<AddCategoryResponse> AddCategoryAsycn(AddCategoryRequest addRequest)
         {
-            throw new Exception("sdfsdfsf");
+            //throw new Exception("sdfsdfsf");
             _validator.ValidateAndThrow(addRequest);
             var addedCategory = await _categoryRepository.AddCategoryAsync(addRequest.ToCategory());
 
-            return addedCategory.ToCategory();
+            return addedCategory.ToAddCategoryResponse();
+        }
+
+        public async Task<UpdateCategoryResponse> UpdateCategoryAsync(UpdateCategoryRequest updateRequest)
+        {
+            _updaterValidator.ValidateAndThrow(updateRequest);
+            var updatedCategory = await _categoryRepository.UpdateCategoryAsync(updateRequest.ToCategory());
+            return updatedCategory.ToUpdateCategoryResponse();
         }
     }
 }

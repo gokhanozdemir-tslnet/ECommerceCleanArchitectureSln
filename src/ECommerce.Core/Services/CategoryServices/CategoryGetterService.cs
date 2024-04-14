@@ -28,5 +28,15 @@ namespace ECommerce.Core.Services.CategoryServices
         {
             return await _categoryRepository.GetAllCategoriesASync();
         }
+
+        public async Task<GetCategoryResponse> GetCategoryById(int id)
+        {
+            return (await _categoryRepository.GetCategoryById(id)).ToGetCategoryResponse();
+        }
+
+        public Task<GetCategoryResponse> GetCategoryByName(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
