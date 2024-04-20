@@ -48,5 +48,12 @@ namespace ECommerce.Core.Helpers.Extensions
             .Map<UpdateCategoryResponse>(reqCategory);
             return category;
         }
+        public static GetCategoryResponse ToGetCategoryResponse(this UpdateCategoryRequest reqCategory)
+        {
+            GetCategoryResponse category = AppMapperBase
+            .Mapper
+            .Map<GetCategoryResponse>(reqCategory);
+            return category;
+        }
     }
 }

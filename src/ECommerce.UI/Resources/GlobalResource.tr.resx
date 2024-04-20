@@ -120,7 +120,13 @@
   <data name="About" xml:space="preserve">
     <value>Hakkımızda</value>
   </data>
+  <data name="ErrorCommonMessage" xml:space="preserve">
+    <value>İşleminiz sırsında bir hata oluştu. Lütfen sonra tekrar deneyiniz</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Anasayfa</value>
+  </data>
+  <data name="SuccedCommonMessage" xml:space="preserve">
+    <value>İşleminiz başarıyla tamamlandı.</value>
   </data>
 </root>

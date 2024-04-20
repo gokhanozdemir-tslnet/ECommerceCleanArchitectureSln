@@ -21,7 +21,8 @@ namespace ECommerce.Core.Services.CategoryServices
         }
 
         public async Task<IQueryable<GetCategoryResponse>> GetCategories()
-        {
+        {          
+
             return _categoryRepository.GetAllCategories().Select(x=>x.ToGetCategoryResponse());
         }
         public async Task<List<Category>> GetAllCategoriesASync()
