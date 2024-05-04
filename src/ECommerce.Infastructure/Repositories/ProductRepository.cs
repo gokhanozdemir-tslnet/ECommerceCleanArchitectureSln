@@ -28,9 +28,12 @@ namespace ECommerce.Infastructure.Repositories
             return await _db.Products.ToListAsync();
         }
 
-        public Product GetProductById(int productId)
+        public async Task<Product> GetProductByUId(Guid productUId)
         {
-            throw new NotImplementedException();
+            
+            var result = await _db.Products.FirstOrDefaultAsync(x=>x.UId == productUId);
+            return result;
+
         }
 
         public Product GetProductByName(string productName)

@@ -1,12 +1,11 @@
 ﻿@using ECommerce.Core.DTOs.Response
 @model GetProductResponse
 
-
 <div class="col-lg-3 col-md-12 mb-3">
     <div class="card">
         <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
              data-mdb-ripple-color="light">
-            <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/belt.webp"
+            <img src="@Model.ImageUrl"
                  class="w-100" />
             <a href="#!">
                 <div class="mask">
@@ -21,13 +20,17 @@
         </div>
         <div class="card-body">
             <a href="" class="text-reset">
-                <h5 class="card-title mb-3">Product name</h5>
+                <h5 class="card-title mb-3">@Model.Title</h5>
             </a>
             <a href="" class="text-reset">
-                <p>@Model.Category.Name</p>
+                <p>@Model.Title</p>
+                <p>@Model.UId</p>
             </a>
-            <h6 class="mb-3">$61.99</h6>
+            <h6 class="mb-3">$ @Model.Price</h6>
         </div>
-        <button class="btn btn-danger">Add to cart</button>
+        <a  
+           href  ="products/@Model.Title/@Model.UId">Detay: @Model.UId</a>
+        <a class="btn btn-danger text-white"
+           href="products/@Model.Title/@Model.UId">Add to cart</a>
     </div>
 </div>

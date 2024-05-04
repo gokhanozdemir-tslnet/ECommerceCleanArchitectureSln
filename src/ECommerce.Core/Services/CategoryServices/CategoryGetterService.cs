@@ -39,5 +39,9 @@ namespace ECommerce.Core.Services.CategoryServices
         {
             throw new NotImplementedException();
         }
+        public async Task<bool> CategoryNameIsExists(string categoryName)
+        {
+            return await _categoryRepository.CategoryNameIsExists(categoryName);
+        }
     }
 }

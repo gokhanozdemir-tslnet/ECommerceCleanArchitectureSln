@@ -9,7 +9,7 @@ namespace ECommerce.Core.Domain.Entities
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int  Id { get; set; }
-        public Guid UId { get; set; }
+        public Guid UId { get; private set; }=Guid.NewGuid();
         public int?  ParentCategoryId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }

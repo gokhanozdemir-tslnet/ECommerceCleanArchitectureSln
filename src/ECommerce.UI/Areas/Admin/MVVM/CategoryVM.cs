@@ -7,20 +7,14 @@ using ECommerce.UI.Resources;
 
 namespace ECommerce.UI.Areas.Admin.MVVM
 {
-    public class CategoryVM
+    public class CategoryVM:BaseVM
     {
         private readonly ICategoryGetterService _categoryGetterService;
         private readonly ICategoryAdderService _categoryAdderService;
         private readonly GlobalResource _globalResource;
 
 
-        public string ErrorCode { get; set; } = string.Empty;
-        public string ErrorMessage { get; set; } = string.Empty;
-        public string SuccedMessage { get; set; } = string.Empty;
-        public bool IsSucced { get; set; }
-
-
-
+       
         public CategoryVM(ICategoryGetterService categoryGetterService,
                           ICategoryAdderService categoryAdderService,
                           GlobalResource globalResource
@@ -28,6 +22,13 @@ namespace ECommerce.UI.Areas.Admin.MVVM
         {
             _categoryGetterService = categoryGetterService;
             _categoryAdderService = categoryAdderService;
+            _globalResource = globalResource;
+        }
+
+        public CategoryVM(ICategoryGetterService categoryGetterService,
+                          GlobalResource globalResource)
+        {
+            _categoryGetterService = categoryGetterService;
             _globalResource = globalResource;
         }
 
@@ -61,10 +62,10 @@ namespace ECommerce.UI.Areas.Admin.MVVM
                 SuccedMessage = $"İşelminiz başarılı bir  şekilde tamamlanmıştır: Urun Id {addedResponse.Id} ";
                 return addedResponse;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 IsSucced = false;
-                ErrorMessage = $"İşelminiz bir hata oluştu";
+                ErrorMessage = $"İşelminiz bir hata oluştu"+ex.Message;
                 return default;
             }
         }

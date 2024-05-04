@@ -32,11 +32,11 @@ namespace ECommerce.Core.Services.ProductServices
               //.Select(temp => temp.ToPersonResponse()).ToList();
         }
 
-        public GetProductResponse GetProduct(GetProductRequest request)
+        public async Task<GetProductResponse> GetProduct(GetProductRequest request)
         {
      
             _validator.ValidateAndThrow(request);
-            var product = _productsRepository.GetProductById(request.Id);
+            var product = await _productsRepository.GetProductByUId(request.UId);
             return product.ToGetProductResponse();
   
         }

@@ -47,7 +47,7 @@ namespace XUnitCRUDTest.Products
 
 
         [Fact]
-        public void GetProduct_CheckArgumentNull_ThrowArgumentNullExcepiton()
+        public async Task GetProduct_CheckArgumentNull_ThrowArgumentNullExcepiton()
         {
             //Arrange:
             GetProductRequest request = null;
@@ -58,36 +58,30 @@ namespace XUnitCRUDTest.Products
             //var response = _validator.Validate(request);
 
             //Assert:
-            Assert.Throws<ArgumentNullException>(
-                () =>
-                {
-                    //Act:
-                    _productService.GetProduct(request);
-                }
+            _ = Assert.ThrowsAsync<ArgumentNullException>(
+              () => _productService.GetProduct(request)
             );
         }
 
         [Fact]
-        public void GetProduct_ProductIdIsZero_ThrowArgumentException()
+        public async Task GetProduct_ProductIdIsZero_ThrowArgumentException()
         {
             GetProductRequest request = new();
             request.Id = 0;
 
-            Assert.Throws<ArgumentException>(
-                () =>
-                {
-                    _productService.GetProduct(request);
-                }
+            _= await Assert.ThrowsAsync<ArgumentException>(
+                () =>              
+                     _productService.GetProduct(request)                
                 );
         }
 
         [Fact]
-        public void GetProduct_WithValidID_GetSuccedResponse()
+        public async Task GetProduct_WithValidID_GetSuccedResponse()
         {
             GetProductRequest getProductRequest = _fixture.Create<GetProductRequest>();
             _testOutputHelper.WriteLine($"Product.Id {getProductRequest.Id}");
 
-            var response = _productService.GetProduct(getProductRequest);
+            var response = await _productService.GetProduct(getProductRequest);
             _testOutputHelper.WriteLine($"Response: {response.ToJson()}");
             Assert.True(response.Title == "Phone");
 

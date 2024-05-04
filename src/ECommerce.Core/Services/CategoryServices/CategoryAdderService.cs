@@ -17,6 +17,7 @@ namespace ECommerce.Core.Services.CategoryServices
 
         public CategoryAdderService(ICategoriesRepository categoryRepository)
         {
+            
             _categoryRepository = categoryRepository;
             _validator = new CategoryAdderValidator();
             _updaterValidator = new CategoryUpdaterValidator();
@@ -26,8 +27,8 @@ namespace ECommerce.Core.Services.CategoryServices
         {
             //throw new Exception("sdfsdfsf");
             _validator.ValidateAndThrow(addRequest);
+            addRequest.Name = addRequest.Name.ToUpper();
             var addedCategory = await _categoryRepository.AddCategoryAsync(addRequest.ToCategory());
-
             return addedCategory.ToAddCategoryResponse();
         }
 

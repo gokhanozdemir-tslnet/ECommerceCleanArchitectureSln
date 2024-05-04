@@ -20,10 +20,12 @@ namespace ECommerce.UI.Areas.Admin.Controllers
     {
         private readonly ICategoryGetterService _categoryGetterService;
         private readonly ICategoryAdderService _categoryAdderService;
-        private readonly CategoryViewModel<AddCategoryRequest> _categoryVM;
         private readonly IDiagnosticContext _diagnoserContext;
         private readonly GlobalResource _globalResource;
         CategoryVM _catVM;
+
+
+       
 
         public CategoryController(ICategoryGetterService categoryGetterService,
                                   ICategoryAdderService   categoryAdderService,
@@ -35,11 +37,13 @@ namespace ECommerce.UI.Areas.Admin.Controllers
             _categoryAdderService = categoryAdderService;
             _diagnoserContext = diagnostic;
             _globalResource = globalResource;
-            _categoryVM = new CategoryViewModel<AddCategoryRequest>();
+
 
             _catVM = new CategoryVM(_categoryGetterService,categoryAdderService,globalResource);
 
         }
+
+      
 
         [HttpGet]
         public async Task<IActionResult> Index()
@@ -65,18 +69,14 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create(AddCategoryRequest addCategory)
         {
             _diagnoserContext.Set("Category", addCategory);
-            _categoryVM.Data = addCategory;
+      
 
 
             var categories = await _catVM.GetCategories();
             ViewBag.Categories = categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
 
-            if (!ModelState.IsValid)
-            {
-                _categoryVM.IsSucced = false;              
-            }
-            else
-            {
+            if (ModelState.IsValid)
+            {            
                 await _catVM.AddCategoryAsycn(addCategory);
                 ViewBag.IsSucced = _catVM.IsSucced;
                 ViewBag.ErrorMessage = _catVM.ErrorMessage;
@@ -102,7 +102,6 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _categoryVM.IsSucced = false;
                 return View(category.ToGetCategoryResponse());
             }
 
@@ -115,6 +114,9 @@ namespace ECommerce.UI.Areas.Admin.Controllers
 
             return View(category.ToGetCategoryResponse());
         }
+        #endregion
+        #region Delete
+
         #endregion
 
     }

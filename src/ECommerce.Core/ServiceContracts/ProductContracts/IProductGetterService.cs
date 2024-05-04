@@ -7,7 +7,7 @@ namespace ECommerce.Core.ServiceContracts.ProductContracts
     public interface IProductGetterService
     {
 
-        GetProductResponse GetProduct(GetProductRequest request);
+        Task<GetProductResponse> GetProduct(GetProductRequest request);
          Task<List<GetProductResponse>> GetAllProducts();
     }
 }

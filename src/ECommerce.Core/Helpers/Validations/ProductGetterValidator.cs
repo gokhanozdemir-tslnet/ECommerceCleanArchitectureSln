@@ -14,10 +14,10 @@ namespace ECommerce.Core.Helpers.Validations
                 //    throw new ArgumentException("dfgdfg");
                 //});
 
-            RuleFor(x => x.Id)
-            .NotNull().WithMessage("Product Id cannot be null")
-            .GreaterThan(0).WithMessage("Product Id caanot be zero")
-            .WithState(x => { throw new ArgumentException(nameof(x.Id)); });
+            //RuleFor(x => x.Id)
+            //.NotNull().WithMessage("Product Id cannot be null")
+            //.GreaterThan(0).WithMessage("Product Id caanot be zero")
+            //.WithState(x => { throw new ArgumentException(nameof(x.Id)); });
         }
     }
 }

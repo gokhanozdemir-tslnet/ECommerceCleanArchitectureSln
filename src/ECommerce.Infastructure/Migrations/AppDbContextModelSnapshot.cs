@@ -17,7 +17,7 @@ namespace ECommerce.Infastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.2")
+                .HasAnnotation("ProductVersion", "8.0.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -33,7 +33,7 @@ namespace ECommerce.Infastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2024, 2, 27, 1, 27, 16, 175, DateTimeKind.Local).AddTicks(2464));
+                        .HasDefaultValue(new DateTime(2024, 5, 4, 19, 28, 34, 758, DateTimeKind.Local).AddTicks(7595));
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -90,6 +90,9 @@ namespace ECommerce.Infastructure.Migrations
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 

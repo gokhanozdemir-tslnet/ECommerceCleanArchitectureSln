@@ -1,9 +1,13 @@
 ﻿using ECommerce.Core.DTOs.Request;
 using ECommerce.Core.Helpers.Validations;
+using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.Core.ServiceContracts.ProductContracts;
+using ECommerce.Core.Services.CategoryServices;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
+using ECommerce.UI.Areas.Admin.MVVM;
+using ECommerce.UI.Resources;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -20,16 +24,25 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         IProductGetterService _productGetterService;
         ProductGetterValidator _validator;
         IProductAdderService _productAdderService;
+        CategoryVM _catVM;
+        ProductVM _productVM;
 
 
         public ProductController(
             IProductGetterService productGettterService,
-            IProductAdderService productAdderService
+            IProductAdderService productAdderService,
+            ICategoryGetterService categoryGetterService,
+            GlobalResource globalResource
             )
         {
 
             _productGetterService = productGettterService;
             _productAdderService = productAdderService;
+            _catVM = new CategoryVM(categoryGetterService, globalResource);
+            _productVM = new ProductVM(
+                productAdderService,
+                productGettterService
+                );
             //_validator = new ProductGetterValidator();
         }
 
@@ -38,7 +51,6 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var productList = await _productGetterService.GetAllProducts();
-
             return View(productList);
         }
 
@@ -46,9 +58,12 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categories = new List<SelectListItem>{ 
-                new SelectListItem {Text = "Elektronik", Value = "2"}, 
-                new SelectListItem {Text = "Bilgisayar", Value = "12"} };
+            
+
+            var categories = await _catVM.GetCategories();
+            ViewBag.Categories = categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
+
+
             return View();
         }
 
@@ -56,17 +71,17 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         public async Task<IActionResult> Create(AddProductRequest productToAdd)
         {
 
-            if (!ModelState.IsValid)
+            var categories = await _catVM.GetCategories();
+            ViewBag.Categories = categories.Select(x => new SelectListItem { Value = x.Id.ToString(), Text = x.Name });
+
+            if (ModelState.IsValid)
             {
-                return View(productToAdd);
+                await _productVM.AddProductAsycn(productToAdd);
+                ViewBag.IsSucced = _productVM.IsSucced;
+                ViewBag.ErrorMessage = _productVM.ErrorMessage;
+                ViewBag.SuccedMessage = _productVM.SuccedMessage;
             }
-
-            return RedirectToAction(nameof(Index));
-            //Act
-            var createdProduct = productToAdd;// await _productAdderService.AddProductAsycn(productToAdd);
-
-
-            return View(createdProduct);
+            return View(productToAdd);
         }
 
 

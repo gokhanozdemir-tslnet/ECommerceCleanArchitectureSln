@@ -6,7 +6,7 @@ namespace ECommerce.Core.Domain.RepositoryContracts
 {
     public interface IProductsRepository
     {
-        Product GetProductById(int productId);
+        Task<Product> GetProductByUId(Guid productId);
         Product GetProductByName(string productName);
         Task<List<Product>> GetAllProductsAsync();
         Task<Product> AddProductAsync(Product product);

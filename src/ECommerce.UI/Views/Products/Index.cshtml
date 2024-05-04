@@ -1,0 +1,19 @@
+﻿@model List<ECommerce.Core.DTOs.Response.GetProductResponse>
+
+
+    <div>Products</div>
+<div class="row mt-5">
+
+
+    @foreach (var item in Model)
+    {
+        @*     <div>sdf</div> *@
+        @await Component.InvokeAsync("ProductCardItem", item)
+    }
+
+    @*
+    @await Component.InvokeAsync("ProductCardItem",null) *@
+    @*     @await Component.InvokeAsync("ProductCardItem")
+    @await Component.InvokeAsync("ProductCardItem") *@
+
+</div>

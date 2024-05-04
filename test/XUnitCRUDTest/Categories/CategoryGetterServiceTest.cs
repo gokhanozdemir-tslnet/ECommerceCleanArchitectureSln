@@ -41,7 +41,6 @@ namespace XUnitCRUDTest.Categories
           {
                  new Category { 
                      Id=1,
-                     UId=Guid.NewGuid(),
                      ParentCategoryId=0,
                      Name="Phones",
                      Tags="Phones"
@@ -52,7 +51,6 @@ namespace XUnitCRUDTest.Categories
         {
                  new Category {
                      Id=2,
-                     UId=Guid.NewGuid(),
                      ParentCategoryId=0,
                      Name="Phones",
                      Tags="Phones"

@@ -13,5 +13,7 @@ namespace ECommerce.Core.Domain.RepositoryContracts
         Task<List<Category>> GetAllCategoriesASync();
         Task<Category> GetCategoryById(int id);
         Task<Category> UpdateCategoryAsync(Category category);
+        Task<bool> DeleteCategoryAsync(int id);
+        Task<bool> CategoryNameIsExists(string categoryName);
     }
 }

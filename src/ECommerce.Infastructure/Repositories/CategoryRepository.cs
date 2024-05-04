@@ -2,6 +2,7 @@
 using ECommerce.Core.Domain.Entities;
 using ECommerce.Core.Domain.RepositoryContracts;
 using ECommerce.Core.DTOs.Response;
+using ECommerce.Core.Exceptions;
 using ECommerce.Infastructure.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,15 +19,17 @@ namespace ECommerce.Infastructure.Repositories
         }
         public async Task<Category> AddCategoryAsync(Category category)
         {
+            if (await CategoryNameIsExists(category.Name))
+            {
+                throw new CategoryIsExsistExceptions($"Category {category.Name} zaten tanımlı");
+            }
+
             await _db.Categories.AddAsync(category);
             var resutl = await _db.SaveChangesAsync();
             return category;
         }
 
-        //public IQueryable<Category> GetAllCategories()
-        //{
-        //    return _db.Categories.AsQueryable();
-        //}
+      
 
         public async Task<List<Category>> GetAllCategoriesASync()
         {
@@ -58,9 +61,24 @@ namespace ECommerce.Infastructure.Repositories
             return category;
         }
 
-        public Task<Category> GetCategoryById(int id)
+        public Task<Category> GetCategoryById(int id) => _db.Categories.FirstOrDefaultAsync(x => x.Id == id);
+
+        public async Task<bool> CategoryNameIsExists(string name)
         {
-            return _db.Categories.FirstOrDefaultAsync(x=>x.Id==id);
+            var result = await _db.Categories.AnyAsync(x => x.Name == name);          
+            return result;
+        }
+
+        public Task<bool> DeleteCategoryAsync(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }
+
+
+
+  //public IQueryable<Category> GetAllCategories()
+        //{
+        //    return _db.Categories.AsQueryable();
+        //}
