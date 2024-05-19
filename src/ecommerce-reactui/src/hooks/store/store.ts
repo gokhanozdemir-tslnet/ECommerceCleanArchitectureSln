@@ -1,3 +1,24 @@
+
+import { configureStore } from "@reduxjs/toolkit"
+import productsReducer from './products/products.slice';
+
+
+export const makeStore = () => {
+    return configureStore({
+        reducer: {
+            products: productsReducer
+        }
+    });
+}
+
+//Infer the type of makestore
+export type AppStore = ReturnType<typeof makeStore>;
+//Infer the RootState and AppDispatch
+export type RootState = ReturnType<AppStore["getState"]>;
+export type AppDispatch = AppStore["dispatch"];
+
+/*****react**********/
+/*
 "use client";
 
 import { configureStore } from "@reduxjs/toolkit";
@@ -36,3 +57,4 @@ export default store;
 export type AppStore = ReturnType<typeof store>
 export type RootState = ReturnType<AppStore["getState"]>;
 export type AppDispatch = AppStore["dispatch"];
+*/

@@ -2,6 +2,7 @@
 using ECommerce.Core.Domain.IdentityEntities;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
+using ECommerce.UI.Filters;
 using ECommerce.UI.Resources;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
@@ -98,7 +99,21 @@ namespace ECommerce.UI.Extensions.Startup
             });
 
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews( options=>
+            {
+                options.Filters.Add(new GlobalModelValidationAttribute());
+            });
+
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(
+                    "CorsPolicy",
+                    builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()
+                    );
+            });
+
+            
 
             return services;
         }

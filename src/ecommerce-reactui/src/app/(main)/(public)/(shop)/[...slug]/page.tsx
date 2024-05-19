@@ -1,4 +1,5 @@
 import Categories from '@/components/containers/categories/categories.component'
+import Products from '@/components/containers/products/products.component'
 import React from 'react'
 
 type Props = {
@@ -21,6 +22,7 @@ const Page = ({ params, searchParams }: Props) => {
 
 
             {isCategoryItems && <Categories />}
+            {isProductDetail && <Products />}
 
         </>
 

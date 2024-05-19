@@ -9,6 +9,7 @@ using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
 using ECommerce.UI.Extensions.Startup;
+using ECommerce.UI.Middleware;
 using ECommerce.UI.Resources;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using System.Globalization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,8 @@ builder.Host.UseSerilog(
         .ReadFrom.Services(services);
     }
     );
+
+
 
 //IOC Continer
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
@@ -83,6 +87,7 @@ var app = builder.Build();
 
 app.UseRequestLocalization();
 app.UseSerilogRequestLogging();
+app.UseCustomGlobalExceptionMiddleware();
 
 
 
@@ -91,6 +96,7 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
 }
+//else app.UseExceptionHandler("/Home/Error");
 app.UseStaticFiles();
 
 app.UseRouting();
