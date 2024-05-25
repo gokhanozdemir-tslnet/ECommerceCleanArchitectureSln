@@ -9,7 +9,7 @@ $headerMain-height: 56px;
     flex-direction: row;
 
     div {
-        margin: 5px;
+        margin: 3px;
         flex-direction: row;
         display: flex;
     }
@@ -38,7 +38,7 @@ $headerMain-height: 56px;
         .login {
 
             order: 1;
-            flex-grow: 2;
+            flex-grow: 6;
             background-color: aqua;
 
         }
@@ -47,6 +47,7 @@ $headerMain-height: 56px;
             order: 2;
             flex-grow: 1;
             background-color: red;
+            
         }
     }
 }

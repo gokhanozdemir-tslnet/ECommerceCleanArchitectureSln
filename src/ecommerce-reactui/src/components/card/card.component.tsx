@@ -32,6 +32,8 @@ const Card = ({ card }: Props) => {
                     <p className="card-text">{description.substring(0, 40)}...</p>
                     <p className="card-text">{price}</p>
                     {/* <LinkButton href={linkUrl}>Dashboard</LinkButton> */}
+                    <button>Add To Cart</button>
+                    <button>sdfsdf</button>
                 </div>
             </div>
         </div>

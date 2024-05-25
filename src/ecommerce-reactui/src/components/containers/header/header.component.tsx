@@ -1,5 +1,6 @@
 
 
+import CartSummary from "@/components/cart/cartsummary.component";
 import "./header.style.scss"
 const Header = () => {
 	return (
@@ -9,7 +10,9 @@ const Header = () => {
 				<div className="header-nav-center">Center nav</div>
 				<div className="header-nav-right">
 					<div className="login">Login</div>
-					<div className="sepet">2.işlem</div>
+					<div className="sepet">
+						<CartSummary></CartSummary>
+					</div>
 				</div>
 			</div>
 			{/* <meta name="viewport" content="width=device-width, initial-scale=1"> */}

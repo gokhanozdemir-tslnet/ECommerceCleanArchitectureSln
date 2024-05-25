@@ -4,6 +4,7 @@ import Card from "@/components/card/card.component"
 import { CardType, ProductType } from "@/types/card.type"
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks"
 import { ProductsType, fetchProducts } from "@/hooks/store/products/products.slice";
+import { fetchProductsFromService, fetchProductsFromService2 } from "@/lib/fetcher";
 
 // type Props = {
 //     name: Awaited<ReturnType<typeof getServerSideProps>>["props"]
@@ -17,28 +18,10 @@ const Products = (props: Props) => {
     const dispatch = useAppDispatch();
     const products = useAppSelector(state => state.products);
 
-    if (products.items.length === 0) {
-        fetch('https://fakestoreapi.com/products')
-            .then(data => data.json())
-            .then(items => (items as Array<ProductType>))
-            .then(list => dispatch(fetchProducts(list)));
-
-    }
-
-
-
-
-    const addToCategoryxxxxx = (target: any) => {
-
-        fetch('https://fakestoreapi.com/products')
-            .then(data => data.json())
-            .then(items => (items as Array<ProductType>))
-            .then(list => dispatch(fetchProducts(list)));
-
-        console.log("****new state*****");
-        console.log(products)
-        console.log("****new state*****");
-    }
+    // if (products.items.length === 0) {   
+      
+    //      fetchProductsFromService2().then(list => dispatch(fetchProducts(list)));
+    // }
 
     return (<div className="card-list-container">
 
