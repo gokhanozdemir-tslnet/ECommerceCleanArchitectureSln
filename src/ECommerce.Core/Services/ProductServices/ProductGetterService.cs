@@ -34,7 +34,7 @@ namespace ECommerce.Core.Services.ProductServices
 
         public async Task<GetProductResponse> GetProduct(GetProductRequest request)
         {
-     
+
             _validator.ValidateAndThrow(request);
             var product = await _productsRepository.GetProductByUId(request.UId);
             return product.ToGetProductResponse();

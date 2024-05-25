@@ -61,20 +61,20 @@ namespace ECommerce.UI.Areas.Admin.MVVM
         }
         internal async Task<GetProductResponse> GetProduct(Guid Uid)
         {
-            try
-            {
+            //try
+            //{
                 var req = new GetProductRequest { UId = Uid };
                 var product = await _productGetterService.GetProduct( req) ;
                 IsSucced = true;
                 SuccedMessage = $"İşelminiz başarılı bir  şekilde tamamlanmıştır: Urun Id  ";
                 return product;
-            }
-            catch (Exception ex)
-            {
-                IsSucced = false;
-                ErrorMessage = $"İşelminiz bir hata oluştu" + ex.Message;
-                return default;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    IsSucced = false;
+            //    ErrorMessage = $"İşelminiz bir hata oluştu" + ex.Message;
+            //    return default;
+            //}
         }
 
     }

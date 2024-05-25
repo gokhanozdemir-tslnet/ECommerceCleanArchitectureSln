@@ -1,43 +1,16 @@
 ﻿@using ECommerce.Core.DTOs.Response
 @model GetProductResponse
 
-
-@* <div class="row mt-col-12 flex-fill p-4">
-   <div class="flex-md-grow">
-        <div class="flex-shrink-0">
-            <img src="https://imgur.com/edOjtEC.png" alt="..." class="img-thumbnail img-fluid" style="width: 380px">
-        </div>
-   </div> *@
-@*  <div class="d-flex align-items-start">
-        <div class="flex-shrink-0">
-            <img src="https://imgur.com/edOjtEC.png" alt="..." class="img-thumbnail img-fluid" style="width: 380px">
-        </div>
-        <div class="flex-grow-4 ms-1 p-2">
-            <div class="flex-grow-1 ms-3 text-uppercase text-black-50">
-                This is some content from a media component. You can replace this with any content and adjust it as needed.
-            </div>
-            <div class="flex-grow-1 ms-3">
-                This is some content from a media component. You can replace this with any content and adjust it as needed.
-            </div>
-
-        </div>
-        <div class="flex-grow-6 ms-3">
-            Sepet Ekleme
-        </div>
-    </div> *@
-@* </div> *@
-
-
 <div class="d-flex">
     <div class=" d-flex flex-row  flex-grow-1">
         <div class="d-flex flex-column bd-highlight ms-2">
             <div class="p-0 bd-highlight">
                 <ul class="list-group">
                     <li class="list-unstyled">
-                        <img  src="@Model.ImageUrl"
+                        <img src="@Model.ImageUrl"
                              class="rounded float-left"
                              alt="..." width="100">
-                    </li>                  
+                    </li>
                 </ul>
                 <ul class="list-group">
                     <li class="list-unstyled">
@@ -51,14 +24,14 @@
         <div class="flex-grow-1 ms-3">
             <img src="@Model.ImageUrl"
                  class="rounded float-left"
-                 alt="..." width="600" >
+                 alt="..." width="600">
         </div>
         <div class="flex-grow-1 ms-3">
             <section class="py-5">
                 <div class="container">
                     <div class="row gx-5">
-      
-                        <main class="col-lg-6">
+
+                        <main class="col-lg-11">
                             <div class="ps-lg-3">
                                 <h4 class="title text-dark">
                                     @Model.Title<br />
@@ -92,13 +65,10 @@
                                 <div class="row">
                                     <dt class="col-3">Type:</dt>
                                     <dd class="col-9">Regular</dd>
-
                                     <dt class="col-3">Color</dt>
                                     <dd class="col-9">Brown</dd>
-
                                     <dt class="col-3">Material</dt>
                                     <dd class="col-9">Cotton, Jeans</dd>
-
                                     <dt class="col-3">Brand</dt>
                                     <dd class="col-9">Reebook</dd>
                                 </div>
@@ -154,5 +124,9 @@
             </div>
         </div>
 
-    </div>
 
+    </div>
+  
+</div>
+
+<div class="col-lg-12">sdfsdfsdf</div>
