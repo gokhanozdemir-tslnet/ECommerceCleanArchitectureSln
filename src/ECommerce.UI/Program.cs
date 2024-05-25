@@ -30,8 +30,8 @@ builder.Host.UseSerilog(
     (HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration)
     =>
     {
-        loggerConfiguration.ReadFrom.Configuration(context.Configuration)
-        .ReadFrom.Services(services);
+        //loggerConfiguration.ReadFrom.Configuration(context.Configuration)
+        //.ReadFrom.Services(services);
     }
     );
 

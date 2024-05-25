@@ -3,7 +3,7 @@
 import Card from "@/components/card/card.component"
 import { CardType, ProductType } from "@/types/card.type"
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks"
-import { ProductsType, fetchProducts } from "@/hooks/store/products/products.slice";
+import { ProductsType, fetchProducts, useGetProductsQuery } from "@/hooks/store/products/products.slice";
 import { fetchProductsFromService, fetchProductsFromService2 } from "@/lib/fetcher";
 
 // type Props = {
@@ -18,8 +18,10 @@ const Products = (props: Props) => {
     const dispatch = useAppDispatch();
     const products = useAppSelector(state => state.products);
 
+    const { data, error, isLoading } = useGetProductsQuery("");
+
     // if (products.items.length === 0) {   
-      
+
     //      fetchProductsFromService2().then(list => dispatch(fetchProducts(list)));
     // }
 
@@ -27,23 +29,17 @@ const Products = (props: Props) => {
 
         {products.items.map(product => <Card card={product} key={product.id} />)}
 
+        {isLoading ? <div> Loading....</div> :
+            data?.map(productItem => <Card card={productItem} key={productItem.id} />)
+        }
+
+
 
     </div>);
 };
 
 export default Products;
 
-
-// const productJSON = (await fetch('https://fakestoreapi.com/products').then(data => data.json())) as Array<CardType>;
-
-// fetch('https://fakestoreapi.com/products')
-//     .then(data => data.json())
-//     .then(items => dispatch(fetchProducts((items as Array<ProductType>))));
-
-// fetch('https://fakestoreapi.com/products').then(data => data.json())) as Array<CardType>;
-// fetch('https://fakestoreapi.com/products')
-//     .then(data => data.json())
-//     .then(items => dispatch(fetchProducts((items as Array<ProductType>))));
 
 
 
