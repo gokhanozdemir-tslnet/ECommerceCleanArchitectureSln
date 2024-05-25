@@ -1,4 +1,5 @@
 import Categories from '@/components/containers/categories/categories.component'
+import Products from '@/components/containers/products/products.component'
 import React from 'react'
 
 type Props = {
@@ -10,7 +11,7 @@ type Props = {
 //pd: product detail
 //ci: category items
 const Page = ({ params, searchParams }: Props) => {
-
+   
     //Note: .some methods returns true if exists or false
     const isProductDetail: boolean = params.slug.some(item => item === "pd");
     const isCategoryItems: boolean = params.slug.some(item => item === "ci");
@@ -21,6 +22,7 @@ const Page = ({ params, searchParams }: Props) => {
 
 
             {isCategoryItems && <Categories />}
+            {isProductDetail && <Products />}
 
         </>
 

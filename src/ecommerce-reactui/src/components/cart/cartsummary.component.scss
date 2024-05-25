@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@function property-value($property, $selector: null) {
+    @return $magic;
+    
+}
+
+.material-symbols-outlined {
+    font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    font-size: 40px;
+    color: white;
+}
+
+label {
+    color: white;
+}
+
+.card-summary-pannel-icon {
+    height: auto;
+    .badge {
+        background-color: white;
+        color: red;
+        padding: 2px 2px 2px 2px;
+        text-align: center;
+        border-radius: 100px;
+        height: 20px;
+        width: 20px;
+        position: relative;
+    }
+}
+
+
+.card-summary-pannel-context {
+
+    width: 229px;
+    height: 400px;
+    background-color: blueviolet;
+    display: none;
+    top: 45px;
+    position: absolute;
+    z-index: 100;
+
+}
+
