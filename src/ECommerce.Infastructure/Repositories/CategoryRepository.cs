@@ -15,7 +15,7 @@ namespace ECommerce.Infastructure.Repositories
 
         public CategoryRepository(AppDbContext db)
         {
-                _db = db;
+            _db = db;
         }
         public async Task<Category> AddCategoryAsync(Category category)
         {
@@ -29,20 +29,16 @@ namespace ECommerce.Infastructure.Repositories
             return category;
         }
 
-      
+
 
         public async Task<List<Category>> GetAllCategoriesASync()
         {
             return await _db.Categories.ToListAsync();
         }
-
-
-
-        public  IQueryable<Category> GetAllCategories()
+        public IQueryable<Category> GetAllCategories()
         {
-            return _db.Categories.AsQueryable() ;
+            return _db.Categories.AsQueryable();
         }
-
         public async Task<Category> UpdateCategoryAsync(Category category)
         {
             Category? updatedCategory = await _db.Categories.FirstOrDefaultAsync(temp => temp.Id == category.Id);
@@ -60,18 +56,21 @@ namespace ECommerce.Infastructure.Repositories
             await _db.SaveChangesAsync(); //UPDATE
             return category;
         }
-
         public Task<Category> GetCategoryById(int id) => _db.Categories.FirstOrDefaultAsync(x => x.Id == id);
-
         public async Task<bool> CategoryNameIsExists(string name)
         {
-            var result = await _db.Categories.AnyAsync(x => x.Name == name);          
+            var result = await _db.Categories.AnyAsync(x => x.Name == name);
             return result;
         }
 
         public Task<bool> DeleteCategoryAsync(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public Task<Category> GetCategoryByUId(Guid uid)
+        {
+            return _db.Categories.FirstOrDefaultAsync(x => x.Id == 1);
         }
     }
 }

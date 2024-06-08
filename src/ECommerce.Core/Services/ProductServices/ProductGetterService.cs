@@ -22,15 +22,41 @@ namespace ECommerce.Core.Services.ProductServices
             _productsRepository = productsRepository;
         }
 
-        public async Task<List<GetProductResponse>> GetAllProducts()
+        public async Task<List<GetProductResponse>> GetAllProducts(GetProductsWithPagingRequest request)
         {
-            
+            try
+            {
+                var products = await _productsRepository.GetAllProductsAsync(request);
 
-            var products = await _productsRepository.GetAllProductsAsync();
+                return products.Select(product => product.ToGetProductResponse()).ToList();
+            }
+            catch (Exception ex)
+            {
 
-            return products.Select(product => product.ToGetProductResponse()).ToList();
+                throw;
+            }
+
+           
               //.Select(temp => temp.ToPersonResponse()).ToList();
+        }       
+        public async Task<GetProductResponse> GetProductByUId(Guid id)
+        {
+            var product = await _productsRepository.GetProductByUId(id);
+            return product.ToGetProductResponse();
         }
+        public async Task<List<GetProductResponse>> GetProductsByTitle(string title)
+        {
+            var products = await _productsRepository.GetProductsByTitle(title);
+            return products.Select(product => product.ToGetProductResponse()).ToList();
+        }
+        public async Task<List<GetProductResponse>> GetProductsByCategoryId(int categoryId)
+        {
+            var products = await _productsRepository.GetProductsByCategoryId(categoryId);
+            return products.Select(product => product.ToGetProductResponse()).ToList();
+
+        }
+
+
 
         public async Task<GetProductResponse> GetProduct(GetProductRequest request)
         {
@@ -40,6 +66,8 @@ namespace ECommerce.Core.Services.ProductServices
             return product.ToGetProductResponse();
   
         }
+
+       
     }
 
 

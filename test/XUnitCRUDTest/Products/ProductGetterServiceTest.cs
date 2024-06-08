@@ -90,7 +90,7 @@ namespace XUnitCRUDTest.Products
         [Fact]
         private async void GetAllProducts()
         {
-           var list = await _productService.GetAllProducts();
+           var list = await _productService.GetAllProducts(new GetProductsWithPagingRequest());
             _testOutputHelper.WriteLine(list.ToJson());
 
             list.Should().HaveCountGreaterThan(0);

@@ -2,12 +2,14 @@ using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using ECommerce.Core.Domain.IdentityEntities;
 using ECommerce.Core.Domain.RepositoryContracts;
+using ECommerce.Core.ServiceContracts;
 using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.Core.ServiceContracts.ProductContracts;
 using ECommerce.Core.Services.CategoryServices;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.DbContexts;
 using ECommerce.Infastructure.Repositories;
+using ECommerce.Infastructure.UnitOfWork;
 using ECommerce.UI.Extensions.Startup;
 using ECommerce.UI.Middleware;
 using ECommerce.UI.Resources;
@@ -66,6 +68,8 @@ builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder =>
     .As<ICategoryAdderService>()
     .UsingConstructor(typeof(ICategoriesRepository))
     .InstancePerLifetimeScope();
+
+    containerBuilder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
 
 
 

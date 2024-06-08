@@ -38,6 +38,7 @@ export const productsSlice = createSlice({
 
 //step 1 create api slice 
 export const productsApi = createApi({
+    reducerPath: "productsServiceApi",
     baseQuery: fetchBaseQuery({ baseUrl: "https://fakestoreapi.com/" }),
     endpoints: (builder) => ({
         getProducts: builder.query<Array<ProductType>, string>({

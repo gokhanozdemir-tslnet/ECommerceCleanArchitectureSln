@@ -34,6 +34,10 @@ namespace ECommerce.Core.Services.CategoryServices
         {
             return (await _categoryRepository.GetCategoryById(id)).ToGetCategoryResponse();
         }
+        public async Task<GetCategoryResponse> GetCategoryByUId(Guid uid)
+        {
+            return (await _categoryRepository.GetCategoryByUId(uid)).ToGetCategoryResponse();
+        }
 
         public Task<GetCategoryResponse> GetCategoryByName(string name)
         {
@@ -43,5 +47,10 @@ namespace ECommerce.Core.Services.CategoryServices
         {
             return await _categoryRepository.CategoryNameIsExists(categoryName);
         }
+
+        //public Task<GetCategoryResponse> GetCategoryByIdAsync(Guid uId)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

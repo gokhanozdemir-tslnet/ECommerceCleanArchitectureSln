@@ -50,7 +50,7 @@ namespace ECommerce.UI.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var productList = await _productGetterService.GetAllProducts();
+            var productList = await _productGetterService.GetAllProducts(new GetProductsWithPagingRequest()) ;
             return View(productList);
         }
 

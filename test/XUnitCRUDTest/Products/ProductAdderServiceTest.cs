@@ -114,7 +114,7 @@ namespace XUnitCRUDTest.Products
             //Act
             var x = await  _productService.AddProductAsycn(request);
 
-            var list = await _productGetterService.GetAllProducts();
+            var list = await _productGetterService.GetAllProducts(new GetProductsWithPagingRequest());
             _testOutputHelper.WriteLine(list.ToJson());
 
 

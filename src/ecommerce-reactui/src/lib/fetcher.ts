@@ -1,4 +1,4 @@
-import { ProductsType } from "@/hooks/store/products/products.slice"
+import { ProductsType } from "@/hooks/store/features/products/products.slice"
 import { ProductType } from "@/types/card.type"
 
 

@@ -12,6 +12,7 @@ namespace ECommerce.Core.Domain.RepositoryContracts
         IQueryable<Category> GetAllCategories();
         Task<List<Category>> GetAllCategoriesASync();
         Task<Category> GetCategoryById(int id);
+        Task<Category> GetCategoryByUId(Guid uid);
         Task<Category> UpdateCategoryAsync(Category category);
         Task<bool> DeleteCategoryAsync(int id);
         Task<bool> CategoryNameIsExists(string categoryName);

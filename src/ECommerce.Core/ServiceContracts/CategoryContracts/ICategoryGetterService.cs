@@ -9,6 +9,8 @@ namespace ECommerce.Core.ServiceContracts.CategoryContracts
         Task<IQueryable<GetCategoryResponse>> GetCategories();
         Task<List<Category>> GetAllCategoriesASync();
         Task<GetCategoryResponse> GetCategoryById(int id);
+        //Task<GetCategoryResponse> GetCategoryByIdAsync(Guid uId);
+        Task<GetCategoryResponse> GetCategoryByUId(Guid uid);
         Task<GetCategoryResponse> GetCategoryByName(string name);
     }
 }

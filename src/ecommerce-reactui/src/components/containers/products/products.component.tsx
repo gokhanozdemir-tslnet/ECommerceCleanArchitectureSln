@@ -3,7 +3,7 @@
 import Card from "@/components/card/card.component"
 import { CardType, ProductType } from "@/types/card.type"
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks"
-import { ProductsType, fetchProducts, useGetProductsQuery } from "@/hooks/store/products/products.slice";
+import { ProductsType, fetchProducts, useGetProductsQuery } from "@/hooks/store/features/products/products.slice";
 import { fetchProductsFromService, fetchProductsFromService2 } from "@/lib/fetcher";
 
 // type Props = {
@@ -19,6 +19,7 @@ const Products = (props: Props) => {
     const products = useAppSelector(state => state.products);
 
     const { data, error, isLoading } = useGetProductsQuery("");
+    console.log(process.env)
 
     // if (products.items.length === 0) {   
 

@@ -8,6 +8,9 @@ namespace ECommerce.Core.ServiceContracts.ProductContracts
     {
 
         Task<GetProductResponse> GetProduct(GetProductRequest request);
-         Task<List<GetProductResponse>> GetAllProducts();
+        Task<List<GetProductResponse>> GetAllProducts(GetProductsWithPagingRequest request);
+        Task<GetProductResponse> GetProductByUId(Guid id);
+        Task<List<GetProductResponse>> GetProductsByTitle(string title);
+        Task<List<GetProductResponse>> GetProductsByCategoryId(int id);
     }
 }

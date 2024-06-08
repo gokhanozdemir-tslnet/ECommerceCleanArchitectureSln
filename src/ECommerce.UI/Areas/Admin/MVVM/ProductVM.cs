@@ -47,7 +47,7 @@ namespace ECommerce.UI.Areas.Admin.MVVM
         {
             try
             {
-                var products = await _productGetterService.GetAllProducts();
+                var products = await _productGetterService.GetAllProducts(new GetProductsWithPagingRequest());
                 IsSucced = true;
                 SuccedMessage = $"İşelminiz başarılı bir  şekilde tamamlanmıştır: Urun Id  ";
                 return products;

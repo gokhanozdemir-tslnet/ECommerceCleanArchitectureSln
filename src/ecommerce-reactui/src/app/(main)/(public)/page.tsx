@@ -1,7 +1,7 @@
 "use client";
 import Card from "@/components/card/card.component";
 import { LinkButton } from "@/components/ui/styles";
-import { selectCategories } from "@/hooks/store/categories/categories.reducer";
+import { selectCategories } from "@/hooks/store/features/categories/categories.reducer";
 import { useSelector } from "react-redux";
 
 
