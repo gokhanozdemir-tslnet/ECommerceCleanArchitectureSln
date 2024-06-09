@@ -7,6 +7,7 @@ using ECommerce.Core.ServiceContracts.CategoryContracts;
 using ECommerce.Core.ServiceContracts.ProductContracts;
 using ECommerce.WebAPI.Configuration.Object;
 using ECommerce.WebAPI.Model.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using System.Security.AccessControl;
@@ -14,6 +15,7 @@ using System.Security.AccessControl;
 namespace ECommerce.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize()]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -48,7 +50,7 @@ namespace ECommerce.WebAPI.Controllers
             };
         }
 
-        [HttpGet("{id:Guid}")]
+        [HttpGet("{id}")]
         public async Task<ApiResponse<GetProductResponse>> GetProductByUId(Guid id)
         {
             var product = await _productGetterService.GetProductByUId(id);
@@ -60,44 +62,44 @@ namespace ECommerce.WebAPI.Controllers
                 Message = ""
             };
         }
-        [HttpGet("{title:string,maxlength(8)}")]
-        public async Task<ApiResponse<List<GetProductResponse>>> GetProductsByTitle(string title)
-        {
-            var products = await _productGetterService.GetProductsByTitle(title);
+        //[HttpGet("{title}")]
+        //public async Task<ApiResponse<List<GetProductResponse>>> GetProductsByTitle(string title)
+        //{
+        //    var products = await _productGetterService.GetProductsByTitle(title);
 
-            return new ApiResponse<List<GetProductResponse>>
-            {
-                Succeeded = true,
-                Data = products,
-                Message = ""
-            };
-        }
-        [HttpGet("{categoryUId:Guid}")]
-        public async Task<ApiResponse<List<GetProductResponse>>> GetProductsByCategoryUId(Guid categoryUId)
-        {
-            var category = await _categoryGetterService.GetCategoryByUId(categoryUId);
-            var products = await _productGetterService.GetProductsByCategoryId(category.Id);
-            return new ApiResponse<List<GetProductResponse>>
-            {
-                Succeeded = true,
-                Data = products,
-                Message = ""
-            };
-        }
+        //    return new ApiResponse<List<GetProductResponse>>
+        //    {
+        //        Succeeded = true,
+        //        Data = products,
+        //        Message = ""
+        //    };
+        //}
+        //[HttpGet("{categoryUId")]
+        //public async Task<ApiResponse<List<GetProductResponse>>> GetProductsByCategoryUId(Guid categoryUId)
+        //{
+        //    var category = await _categoryGetterService.GetCategoryByUId(categoryUId);
+        //    var products = await _productGetterService.GetProductsByCategoryId(category.Id);
+        //    return new ApiResponse<List<GetProductResponse>>
+        //    {
+        //        Succeeded = true,
+        //        Data = products,
+        //        Message = ""
+        //    };
+        //}
 
 
-        [HttpPost]
-        public async Task<ApiResponse<AddProductResponse>> CreateProduct(AddProductRequest request)
-        {
-            var result = await _productAdderService.AddProductAsycn(request);
-            return new ApiResponse<AddProductResponse>
-            {
-                Succeeded = true,
-                Data = result,
-                Message = ""
-            };
-        }
-     
+        //[HttpPost]
+        //public async Task<ApiResponse<AddProductResponse>> CreateProduct(AddProductRequest request)
+        //{
+        //    var result = await _productAdderService.AddProductAsycn(request);
+        //    return new ApiResponse<AddProductResponse>
+        //    {
+        //        Succeeded = true,
+        //        Data = result,
+        //        Message = ""
+        //    };
+        //}
+
 
 
         //BEST PRACTICE 
