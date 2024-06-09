@@ -22,16 +22,7 @@ const CartSummary = (props: Props) => {
         <span className="material-symbols-outlined">shopping_cart</span>
         <span className="badge">3</span>
         <label>Sepetim</label>
-        <div className='card-summary-pannel-context'>
-          <div className=''>
-            {/* <Image
-              src="/profile.png"
-              width={500}
-              height={500}
-              alt="Picture of the author"
-            /> */}
-          </div>
-        </div>
+
       </div>
 
 
