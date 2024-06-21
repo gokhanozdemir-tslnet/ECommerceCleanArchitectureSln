@@ -15,7 +15,7 @@ using System.Security.AccessControl;
 namespace ECommerce.WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize()]
+    [Authorize(Roles = "User")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
