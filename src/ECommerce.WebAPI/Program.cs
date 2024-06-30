@@ -10,6 +10,9 @@ using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddMemoryCache();
+
 // Add services to the container.
 builder.ConfigureAutofacServiceProvider().AddLifetimeServices();
 builder.Services.AddConfig(builder.Configuration);
@@ -56,9 +59,12 @@ builder.Host.ConfigureSerilog();
 
 builder.Services.ConfigureCors();
 
+
 var app = builder.Build();
 
 app.UseSerilogRequestLogging();
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();

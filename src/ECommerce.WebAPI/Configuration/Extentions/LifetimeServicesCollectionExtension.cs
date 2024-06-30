@@ -6,6 +6,7 @@ using ECommerce.Core.ServiceContracts.ProductContracts;
 using ECommerce.Core.Services.CategoryServices;
 using ECommerce.Core.Services.ProductServices;
 using ECommerce.Infastructure.Repositories;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace ECommerce.WebAPI.Configuration.Extentions
 {
@@ -27,7 +28,7 @@ namespace ECommerce.WebAPI.Configuration.Extentions
 
                 containerBuilder.RegisterType<ProductGetterService>()
                 .As<IProductGetterService>()
-                .UsingConstructor(typeof(IProductsRepository))
+                .UsingConstructor(typeof(IProductsRepository),typeof(IMemoryCache))
                 .InstancePerLifetimeScope();
 
                 containerBuilder.RegisterType<ProductAdderService>()

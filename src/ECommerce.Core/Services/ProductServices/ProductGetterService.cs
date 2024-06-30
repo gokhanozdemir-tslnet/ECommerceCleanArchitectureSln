@@ -8,6 +8,8 @@ using ECommerce.Core.Helpers.Mapper;
 using ECommerce.Core.Helpers.Validations;
 using ECommerce.Core.ServiceContracts.ProductContracts;
 using FluentValidation;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Logging;
 
 namespace ECommerce.Core.Services.ProductServices
 {
@@ -15,19 +17,33 @@ namespace ECommerce.Core.Services.ProductServices
     {
         ProductGetterValidator _validator;
         IProductsRepository _productsRepository;
+        IMemoryCache _cache;
 
-        public ProductGetterService(IProductsRepository productsRepository)
+        public ProductGetterService(IProductsRepository productsRepository,IMemoryCache cache)
         {
             _validator = new ProductGetterValidator();
             _productsRepository = productsRepository;
+            _cache = cache;
+
         }
 
         public async Task<List<GetProductResponse>> GetAllProducts(GetProductsWithPagingRequest request)
         {
             try
             {
-                var products = await _productsRepository.GetAllProductsAsync(request);
 
+                string key = "GetAllProducts_GetProductsWithPagingRequest_" + request.PageNumber.ToString() + "_" + request.PageSize.ToString() + "_";
+                if (!_cache.TryGetValue(request.ToJson(), out List<Product> products))
+                {
+
+                    products = await _productsRepository.GetAllProductsAsync(request);
+                    var cacheOptions = new MemoryCacheEntryOptions()
+                        .SetSlidingExpiration(TimeSpan.FromSeconds(30))
+                        .SetAbsoluteExpiration(TimeSpan.FromSeconds(300))
+                        .SetPriority(CacheItemPriority.Normal);
+                  
+                    _cache.Set(key, products, cacheOptions);
+                }
                 return products.Select(product => product.ToGetProductResponse()).ToList();
             }
             catch (Exception ex)
